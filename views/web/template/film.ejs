@@ -1,0 +1,198 @@
+<%-include('header')%>
+<%
+let proxy = JSON.parse(data.proxy);
+let thumb = data.thumb;
+if(proxy.thumb) thumb = proxy.thumb;
+else thumb = `/image/thumb/${data.id}/`;
+thumb = data.thumb;
+%>
+<!-- Start: JS Tag -->
+<script src="/assets/theme/js/jquery.raty.js" type="text/javascript"></script>
+<script src="/assets/theme/js/public.film.js?_jv=1.168" type="text/javascript"></script>
+<script src="/assets/theme/js/trailer-popup.js?_jv=1.05" type="text/javascript"></script>
+<script src="/assets/theme/js/film-info.js?_jv=1.1698" type="text/javascript"></script>
+<script src="/assets/theme/js/trailer.js" type="text/javascript"></script>
+<!-- End: JS Tag -->
+    <!-- Main content -->
+	<ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+		<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+            <a itemprop="item" title="Phim Mới" href="/">
+                <span itemprop="name">Phim Mới</span>
+            </a>
+        </li>
+        <% if(data.type) { %>
+            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                <a itemprop="item" title="<%=getType(data.type)%>" href="/danh-sach/?type=<%=data.type%>">
+                    <span itemprop="name"><%=getType(data.type)%></span>
+                </a>
+            </li>
+        <% } %>
+        <% data.Categories.forEach(item => { %>
+            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                <a itemprop="item" title="<%=item.name%>" href="/danh-sach/?category=<%=item.slug%>">
+                    <span itemprop="name"><%=item.name%></span>
+                </a>
+            </li>
+        <% }) %>
+		<li class="active"><%=data.name%></li>
+	</ol>
+	<div class="row">
+		<!-- slider -->
+		<div class="col-lg-8">
+			<script type="text/javascript">
+			filmInfo.filmId = parseInt('<%=data.id%>');
+			filmInfo.title = '<%=data.name%>';
+			filmInfo.url = '/phim/<%=data.slug%>-<%=data.id%>/';
+			filmInfo.fullUrl = '<%=domain%>/phim/<%=data.slug%>-<%=data.id%>/';
+			filmInfo.fbUrl = '<%=domain%>/phim/<%=data.slug%>-<%=data.id%>/';
+			filmInfo.trailerUrl = '<%=data.trailer%>';
+			filmInfo.previewUrl = '<%=thumb%>';
+			</script>
+			<div class="block-wrapper page-single">
+				<!-- Thông tin phim -->
+				<div class="movie-info">
+					<div class="block-movie-info movie-info-box">
+						<div class="row">
+							<div class="col-7 movie-detail">
+								<h1 class="movie-title">
+                                    <span class="title-1">
+                                        <a class="title-1" href="/phim/<%=data.slug%>-<%=data.id%>/"><%=data.name%></a>
+                                    </span>
+                                    <span class="title-2"><%=data.nameEn%></span>
+                                    <span class="title-year"> (<%=data.year%>)</span>
+                                </h1>
+								<div class="movie-meta-info" style="overflow: hidden; width: auto; height: unset;">
+                                    <dl class="movie-dl">
+                                        <% if(data.imdb) { %>
+                                            <dt class="movie-dt">Điểm IMDb:</dt>
+                                            <dd class="movie-dd imdb"><%=data.imdb%></dd><br>
+                                        <% } %>
+                                        <dt class="movie-dt">Đạo diễn:</dt>
+                                        <dd class="movie-dd dd-director">
+                                            <%
+                                            let director = data.director.split(",");
+                                            for(const item of director) { %>
+                                                <a class="director" href="/danh-sach/?tags=<%=item.trim()%>" title="<%=item.trim()%>"><%=item.trim()%></a>,  
+                                            <% } %>
+                                        </dd>
+                                        <br><dt class="movie-dt">Diễn viên:</dt>
+                                        <dd class="movie-dd dd-actor">
+                                            <%
+                                            let actor = data.actor.split(",");
+                                            for(const item of actor) { %>
+                                                <a class="actor" href="/danh-sach/?tags=<%=item.trim()%>" title="<%=item.trim()%>"><%=item.trim()%></a>,  
+                                            <% } %>
+                                        </dd>
+                                        <br><dt class="movie-dt">Thể loại:</dt>
+                                        <dd class="movie-dd dd-cat">
+                                            <% data.Categories.forEach(item => { %>
+                                                <a class="category" href="/danh-sach/?category=<%=item.slug%>" title="Phim <%=item.name%>"><%=item.name%></a>,
+                                            <% }) %>
+                                        </dd>
+                                        <br><dt class="movie-dt">Quốc gia:</dt>
+                                        <dd class="movie-dd dd-country">
+                                            <% data.Countries.forEach(item => { %>
+                                                <a class="country" href="/danh-sach/?country=<%=item.slug%>" title="Phim <%=item.name%>"><%=item.name%></a>,
+                                            <% }) %>
+                                        </dd>
+                                        <br><dt class="movie-dt">Lượt xem:</dt><dd class="movie-dd"><%=numberFormat(data.viewed)%></dd>
+                                        <br><dt class="movie-dt">Năm:</dt><dd class="movie-dd"><a title="Phim mới <%=data.year%>" href="/danh-sach/?year=<%=data.year%>"><%=data.year%></a></dd>
+                                        <br><dt class="movie-dt">Thời lượng:</dt><dd class="movie-dd"><%=data.duration%></dd>
+                                        <br><dt class="movie-dt">Ngày cập nhật:</dt><dd class="movie-dd"><%=moment(data.updatedAt).format("DD/MM/YYYY")%></dd>
+                                    </dl>
+                                    <div class="clear"></div>
+                                </div>
+							</div>
+							<div class="col-5 movie-image">
+								<div class="movie-l-img"><img alt="<%=data.name%> - <%=data.nameEn%>" src="<%=thumb%>">
+									<h2 class="hidden">Xem phim</h2>
+									<ul class="btn-block">
+                                        <% if(data.trailer) { %>
+                                            <li class="item"><a id="btn-film-trailer" class="btn btn-primary btn-film-trailer" title="Trailer <%=data.name%> - <%=data.nameEn%>" href="javascript:void(0)" data-videourl="https://www.youtube.com/watch?v=nQY4dIxY1H4">Trailer</a></li>
+                                        <% } %>
+                                        <% if(country === "VN") { %>
+                                            <% if(data.Episodes.length > 0) {
+                                                let episodes = sortEpisode(data.Episodes);
+                                                let episode = episodes[0];
+                                                let epname = episode.name;
+                                                if(epname === 0) epname = "Full";
+                                                else if(epname > 0 && epname < 10) epname = `0${epname}`;
+                                                %>
+                                                <li class="item"><a id="btn-film-watch" class="btn btn-red" title="Xem phim <%=data.name%> - <%=data.nameEn%>" href="/phim/<%=data.slug%>-<%=data.id%>/tap-<%=convertSlug(epname)%>-<%=episode.id%>.html">Xem phim</a></li>
+                                            <% } else { %>
+                                                <div class="block-wrapper page-single block-note" style="width:100%;margin-bottom:10px;">Phim chưa có tập</div>
+                                            <% } %>
+                                        <% } else { %>
+                                            <!-- <li class="item"><a id="btn-film-watch" class="btn btn-red" title="Xem phim <%=data.name%> - <%=data.nameEn%>" href="/phim/<%=data.slug%>-<%=data.id%>/xem-phim.html">Xem phim</a></li> -->
+                                            <div class="block-wrapper page-single block-note" style="width:100%;margin-bottom:10px;">Vì lý do bản quyền nên phim chỉ có thể được xem tại VN</div>
+                                        <% } %>
+                                    </ul>
+								</div>
+								<div class="action" style="display:none">
+									<div class="btn-group">
+										<button type="button" class="btn btn-a dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+										<ul class="dropdown-menu" role="menu"></ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <% if(data.trailer) { %>
+                        <div class="ad-topcomment-pc trailer-preroll-wrapper" style="max-height:100%;margin-top:10px;">
+                            <div class="ratio-box ratio-16_9">
+                                <div class="ratio-content" id="trailer-preroll-container" style="position:relative">
+                                    <iframe rel="nofollow" src="<%=data.trailer%>" width="100%" height="100%" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" frameborder="no" scrolling="no"></iframe>
+                                    <div id="pm-trailer-preroll-wrapper" style="position:absolute;left:-3000px;top:0;z-index:2;width: 100%;height: 100%;">
+                                        <iframe id="pm-trailer-preroll" style="border:0;margin:0;padding:0;overflow:hidden;width:100%;height:100%;background-color:#000"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+					<article class="block-movie-content" id="film-content-wrapper">
+						<h2 class="movie-detail-h2">Nội dung phim</h2>
+						<div class="fb-like" data-href="<%=domain%>/phim/<%=data.slug%>-<%=data.id%>/" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+                        <div class="content" id="film-content" style="max-height: 800px;">
+							<%-data.content%>
+						</div>
+					</article>
+					<div class="block-tags">
+						<h3 class="movie-detail-h3">Từ khóa:</h3>
+						<ul class="tag-list">
+                            <%
+                            let tags = data.keywords.split(",");
+                            for(const item of tags) { %>
+                                <li class="tag-item">
+                                    <a class="tag-link" href="/danh-sach/?tags=<%=item.trim()%>" title="<%=item.trim()%>"><%=item.trim()%></a>
+                                </li>
+                            <% } %>
+						</ul>
+					</div>
+				</div>
+				<!-- / Thông tin phim -->
+				<div style="margin-top:10px; margin-left: auto; margin-right: auto;margin-bottom:0;width:336px;overflow-x:hidden;"></div>
+				<div class="clear"></div>
+			</div>
+			<!-- Top comment PC -->
+			<div class="ad-mobile" style="margin-top: 20px">
+                <img src="/assets/images/banner/mobile2.svg">
+            </div>
+			<!-- / Top comment PC -->
+            <div class="block-wrapper page-single block-comments">
+                <div class="fb-comments" data-href="<%=domain%>/phim/<%=data.slug%>-<%=data.id%>/" data-order-by="reverse_time" data-width="650" style="max-height: 30px;"></div>
+            </div>
+			<div class="clear"></div>
+            <div class="ad-mobile" style="margin-top: 20px">
+                <img src="/assets/images/banner/mobile3.svg">
+            </div>
+			<div class="movie-list-index related-box">
+				<h2 class="header-list-index"><span class="title-list-index">Có thể bạn cũng muốn xem</span></h2>
+				<ul class="list-movie">
+                    <%-html.htmlList(randomFilm)%>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<!-- Sidebar -->
+		<%-include('sidebar')%>
+<%-include('footer')%>

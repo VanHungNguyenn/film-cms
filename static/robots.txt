@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: */page/*
+Disallow: *?fbclid=*
+Disallow: /?s=*
+Disallow: /login/
+Disallow: *?fb_comment_id=*
+
+Allow: /*.js$
+Allow: /*.css$
+
+Sitemap: https://zphimmoi.com/sitemap.xml

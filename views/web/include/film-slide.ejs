@@ -1,0 +1,20 @@
+<%
+    var phim = (phim) ? phim : {};
+    var tenPhim = phim.title || phim.filmname || "";
+    var tenPhim2 = phim.filmname || "";
+    var duration = phim.filmtime || "";
+    var permalink = `/phim/${phim.slug}-${phim.id}/`;
+    var thumbPhim = (phim.thumb) ? phim.thumb : {};
+    var thumbnail = thumbPhim.url || phim.thumb_old || "/assets/imgs/no-image.gif";
+%>
+<div class="item">
+    <a href="<%=permalink%>" class="film" title="<%=tenPhim%>">
+        <div class="thumb" style="background-image: url(<%=thumbnail%>)"></div>
+        <div class="info">
+            <div class="title"><%=tenPhim%></div>
+            <div class="name"><%=tenPhim2%></div>
+            <div class="duration"><%=duration%></div>
+        </div>
+        <div class="ribbon">HD-Vietsub</div>
+    </a>
+</div>

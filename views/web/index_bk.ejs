@@ -1,0 +1,122 @@
+<%
+    var filmSlider = (page.homeFilmDeCu && page.homeFilmDeCu.rows) ? page.homeFilmDeCu.rows : [];
+    var filmDeCu = (page.homeFilmDeCuMoi && page.homeFilmDeCuMoi.rows) ? page.homeFilmDeCuMoi.rows : [];
+    var filmLe = (page.homeFilmLeUpdated && page.homeFilmLeUpdated.rows) ? page.homeFilmLeUpdated.rows : [];
+    var filmBo = (page.homeFilmBoUpdated && page.homeFilmBoUpdated.rows) ? page.homeFilmBoUpdated.rows : [];
+    var filmAnime = (page.homeFilmAnimeUpdated && page.homeFilmAnimeUpdated.rows) ? page.homeFilmAnimeUpdated.rows : [];
+    var filmLeMoi = (page.homeFilmLeMoi && page.homeFilmLeMoi.rows) ? page.homeFilmLeMoi.rows : [];
+    var filmBoMoi = (page.homeFilmBoMoi && page.homeFilmBoMoi.rows) ? page.homeFilmBoMoi.rows : [];
+    var filmAnimeMoi = (page.homeFilmAnimeMoi && page.homeFilmAnimeMoi.rows) ? page.homeFilmAnimeMoi.rows : [];
+%>
+<%- include('./include/header.ejs', {pageClass: 'homePage'}) %>
+<main id="pBody">
+    <div class="container">
+        <% if(filmSlider.length > 0){ %>
+        <!-- Slider -->
+        <section class="secBox sbSlider">
+            <div class="sbHeader sbhUnderline">
+                <h2 class="text">Phim đề cử</h2>
+            </div>
+            <div class="sbBody">
+                <div class="owl-carousel sliderPhimDeCu">
+                    <%- include('./include/film-loop', {phims: filmSlider, fileName: "film-slide"}) %>
+                </div>
+            </div>
+        </section>
+        <% } %>
+        <div class="w-main">
+            <div class="col col23">
+                <!-- Ads + Tab phim -->
+                <div class="w-at">
+                    <div class="col col-ads">
+                        <a class="adsNextToTab" href="#"><img width="300px" height="600px" src="/assets/imgs/300x600.gif" alt="Ads 300x600"></a>
+                    </div>
+                    <div class="col col-tab">
+                        <div class="tabBox tbPhimHome">
+                            <ul class="controls">
+                                <li class="current"><a href="#tabPhimLe" rel="nofollow">Phim lẻ mới</a></li>
+                                <li><a href="#tabPhimBo" rel="nofollow">Phim bộ mới</a></li>
+                                <li><a href="#tabPhimAnime" rel="nofollow">Anime mới</a></li>
+                            </ul>
+                            <div class="tbBody">
+                                <div id="tabPhimLe" class="tabContent open">
+                                    <ul class="list">
+                                        <%- include('./include/film-loop', {phims: filmLeMoi, fileName: "film3"}) %>
+                                    </ul>
+                                </div>
+                                <div id="tabPhimBo" class="tabContent">
+                                    <ul class="list">
+                                        <%- include('./include/film-loop', {phims: filmBoMoi, fileName: "film3"}) %>
+                                    </ul>
+                                </div>
+                                <div id="tabPhimAnime" class="tabContent">
+                                    <ul class="list">
+                                        <%- include('./include/film-loop', {phims: filmAnimeMoi, fileName: "film3"}) %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% if(filmDeCu.length > 0){ %>
+                <!-- Phim đề cử mới -->
+                <section class="secBox">
+                    <div class="sbHeader sbhUnderline">
+                        <h2 class="text">Phim đề cử mới</h2>
+                        <a href="/phim-de-cu/" class="btnMore">Xem tất cả</a>
+                    </div>
+                    <div class="sbBody">
+                        <ul class="w w4">
+                            <%- include('./include/film-loop', {phims: filmDeCu, fileName: "film"}) %>
+                        </ul>
+                    </div>
+                </section>
+                <% } %>
+                <% if(filmLe.length > 0){ %>
+                <!-- Phim lẻ mới cập nhật -->
+                <section class="secBox">
+                    <div class="sbHeader sbhUnderline">
+                        <h2 class="text">Phim lẻ mới cập nhật</h2>
+                        <a href="/phim-le/" class="btnMore">Xem tất cả</a>
+                    </div>
+                    <div class="sbBody">
+                        <ul class="w w4">
+                            <%- include('./include/film-loop', {phims: filmLe, fileName: "film"}) %>
+                        </ul>
+                    </div>
+                </section>
+                <% } %>
+                <% if(filmBo.length > 0){ %>
+                <!-- Phim bộ mới cập nhật -->
+                <section class="secBox">
+                    <div class="sbHeader sbhUnderline">
+                        <h2 class="text">Phim bộ mới cập nhật</h2>
+                        <a href="/phim-bo/" class="btnMore">Xem tất cả</a>
+                    </div>
+                    <div class="sbBody">
+                        <ul class="w w4">
+                            <%- include('./include/film-loop', {phims: filmBo, fileName: "film"}) %>
+                        </ul>
+                    </div>
+                </section>
+                <% } %>
+                <% if(filmAnime.length > 0){ %>
+                <!-- Phim hoạt hình mới cập nhật -->
+                <section class="secBox">
+                    <div class="sbHeader sbhUnderline">
+                        <h2 class="text">Phim hoạt hình mới cập nhật</h2>
+                        <a href="/phim-hoat-hinh/" class="btnMore">Xem tất cả</a>
+                    </div>
+                    <div class="sbBody">
+                        <ul class="w w4">
+                            <%- include('./include/film-loop', {phims: filmAnime, fileName: "film"}) %>
+                        </ul>
+                    </div>
+                </section>
+                <% } %>
+            </div>
+            <%- include("./include/sidebar") %>
+        </div>                
+    </div>
+</main>
+<%- include('./include/footer.ejs') %>

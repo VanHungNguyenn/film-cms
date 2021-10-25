@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>www.zphimmoi.tv</title>
+    <link rel="icon" type="image/png" href="/assets/imgs/favicon.png">
+    <link rel="stylesheet" href="/assets/js/owl2.2.3.4/assets/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script>
+        var token = "<%=(session.ajaxpagetoken)?session.ajaxpagetoken:''%>",
+            domain = "<%=(domain)?domain:''%>",
+            ldomain = "<%=(page.curLang && page.curLang.ismain==false)?`${domain}/${page.curLang.id}`:domain;%>",
+            hasWebP = !1;
+        !function() {
+            var A = new Image;
+            A.onload = function() {                
+                hasWebP = !!(A.height > 0 && A.width > 0)
+            }, A.onerror = function() {
+                hasWebP = !1
+            }, A.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA"
+        }();        
+        function lazyImage(lzl) {
+            return function(e) {
+                var observer,
+                    options = {
+                        rootMargin: "0px",
+                        threshold: 0.05
+                    },
+                    allTheLazyImages = document.querySelectorAll("." + lzl);
+                function lazyLoader(e) {
+                    e.forEach(function(e) {
+                        e.intersectionRatio > 0 && lazyLoadImage(e.target);
+                    });
+                }
+                function lazyLoadImage(e) {
+                    e.onload = function() {
+                        e.classList.remove(lzl);
+                    };
+                    e.getAttribute("data-img") && (e.style.backgroundImage = "url('".concat(e.getAttribute("data-img"), "')")), ("IntersectionObserver" in window && observer.unobserve(e));
+                }
+                if("IntersectionObserver" in window)(observer = new IntersectionObserver(lazyLoader, options)), allTheLazyImages.forEach(function(e) {
+                    observer.observe(e);
+                });
+                else for (var i = 0; i < allTheLazyImages.length; i++) lazyLoadImage(allTheLazyImages[i]);
+            }
+        }
+        function lazyScript(c, e) {
+            var n = document.createElement("script");
+            n.async = !0, e && (n.onload = e), document.head.appendChild(n), n.src = c
+        }        
+        var lazyLoad = false;
+        function onLazyLoad(){
+            if (lazyLoad === true) return;
+            lazyLoad = true;
+            document.removeEventListener('scroll', onLazyLoad);
+            document.removeEventListener('mousemove', onLazyLoad);
+            document.removeEventListener('mousedown', onLazyLoad);
+            document.removeEventListener('touchstart', onLazyLoad);            
+            setTimeout(function() {
+                // Load Google Analytics
+                !function(e, a, t, n, g, c, o) {
+                    e.GoogleAnalyticsObject = g, e.ga = e.ga || function() {
+                        (e.ga.q = e.ga.q || []).push(arguments)
+                    }, e.ga.l = 1 * new Date, c = a.createElement(t), o = a.getElementsByTagName(t)[0], c.async = 1, c.src = "https://www.google-analytics.com/analytics.js", o.parentNode.insertBefore(c, o)
+                }(window, document, "script", 0, "ga"), ga("create", "UA-145690480-1", "auto"), ga("send", "pageview");
+                // Tracking GTA
+                window.onerror = function(message, source, lineno, colno, error) {
+                    var label = location.href + ': ' + message + ' (' + source + ':' + lineno + (colno ? ':' + colno : '') + ')';                   
+                    ga('send', 'event', 'performance', 'error', label, 1, {
+                        nonInteraction: true
+                    });
+                    window.onerror = null;
+                };
+                // Lazy load Facebook SDK
+                lazyScript("//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=734723923893283&autoLogAppEvents=1");
+            }, 1)
+        }
+        document.addEventListener("scroll", onLazyLoad),
+        document.addEventListener("mousemove", onLazyLoad),
+        document.addEventListener("mousedown", onLazyLoad),
+        document.addEventListener("touchstart", onLazyLoad),
+        document.addEventListener("load", function() {
+            document.body.clientHeight != document.documentElement.clientHeight && 0 == document.documentElement.scrollTop && 0 == document.body.scrollTop || onLazyLoad();
+        });
+    </script>
+</head>
+<body>
+    <div id="page">
+        <header id="pHeader">
+            <div class="phTop">
+                <div class="container">
+                    <a href="/" class="logo">
+                        <span>zphimmoi.tv</span>
+                    </a>
+                    <div class="formSearchWrap">
+                        <form action="/">
+                            <input type="text" name="s" placeholder="Tìm: tên phim, đạo diễn, diễn viên">
+                            <button>&nbsp;</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="phBot">
+                <nav class="container">
+                    <ul class="mainNav clear">
+                        <li class="current"><a href="#">Phim mới</a></li>
+                        <li>
+                            <a href="#">Thể loại</a>
+                            <ul class="sub-nav">                            
+                                <li><a href="#">Phim Hành Động</a></li>
+                                <li><a href="#">Phim Hoạt Hình</a></li>
+                                <li><a href="#">Phim Viễn Tưởng</a></li>
+                                <li><a href="#">Phim Tài Liệu</a></li>
+                                <li><a href="#">Phim Bí Ẩn</a></li>
+                                <li><a href="#">Phim Phiêu Lưu</a></li>
+                                <li><a href="#">Phim Võ Thuật</a></li>
+                                <li><a href="#">Phim Thần Thoại</a></li>
+                                <li><a href="#">Phim Kịch Tính</a></li>
+                                <li><a href="#">Phim Viễn Tây</a></li>
+                                <li><a href="#">Phim Kinh Dị</a></li>
+                                <li><a href="#">Phim Hài Hước</a></li>
+                                <li><a href="#">Phim Lịch Sử</a></li>
+                                <li><a href="#">Phim Gia Đình</a></li>
+                                <li><a href="#">Phim Tình Cảm</a></li>
+                                <li><a href="#">Phim Tâm Lý</a></li>
+                                <li><a href="#">TV Show</a></li>
+                                <li><a href="#">Thể Thao</a></li>
+                                <li><a href="#">Phim Âm Nhạc</a></li>
+                                <li><a href="#">Phim Hình Sự</a></li>
+                                <li><a href="#">Phim Tội Phạm</a></li>
+                                <li><a href="#">Phim Chiến Tranh</a></li>
+                                <li><a href="#">Phim Chính Kịch</a></li>
+                                <li><a href="#">Phim Siêu Nhiên</a></li>
+                                <li><a href="#">Phim Cổ Trang</a></li>
+                                <li><a href="#">Phim Học Đường</a></li>
+                                <li><a href="#">Phim Phép Thuật</a></li>
+                                <li><a href="#">Phim Trò Chơi</a></li>
+                                <li><a href="#">Phim Hoa Ngữ</a></li>
+                                <li><a href="#">Phim Drama</a></li>
+                                <li><a href="#">Phim Giả Tưởng</a></li>
+                                <li><a href="#">Phim Đời Thường</a></li>
+                                <li><a href="#">Phim Harem</a></li>
+                                <li><a href="#">Phim Ecchi</a></li>
+                                <li><a href="#">Phim Shounen</a></li>
+                                <li><a href="#">Live Action</a></li>
+                                <li><a href="#">CN Animation</a></li>	
+                                <li><a href="#">Siêu Anh Hùng</a></li>
+                                <li><a href="#">Khác</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Quốc Gia</a>
+                            <ul class="sub-nav">
+                                <li><a href="#">Trung Quốc</a></li>
+                                <li><a href="#">Nhật Bản</a></li>
+                                <li><a href="#">Hàn Quốc</a></li>
+                                <li><a href="#">Thái Lan</a></li>
+                                <li><a href="#">Việt Nam</a></li>
+                                <li><a href="#">Pháp</a></li>
+                                <li><a href="#">Canada</a></li>
+                                <li><a href="#">Hong Kong</a></li>
+                                <li><a href="#">Đài Loan</a></li>
+                                <li><a href="#">Mỹ</a></li>
+                                <li><a href="#">Ấn Độ</a></li>
+                                <li><a href="#">Úc</a></li>
+                                <li><a href="#">Anh</a></li>
+                                <li><a href="#">Tây Ban Nha</a></li>
+                                <li><a href="#">Quốc Gia Khác</a></li>
+                                <li><a href="#">Nga</a></li>
+                                <li><a href="#">Ba Lan</a></li>
+                                <li><a href="#">Đức</a></li>
+                                <li><a href="#">Ý</a></li>
+                                <li><a href="#">Brazil</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Phim lẻ</a>
+                            <ul class="sub-nav">                            
+                                <li><a href="#">Phim lẻ 2021</a></li>
+                                <li><a href="#">Phim lẻ 2020</a></li>
+                                <li><a href="#">Phim lẻ 2019</a></li>
+                                <li><a href="#">Phim lẻ 2018</a></li>
+                                <li><a href="#">Phim lẻ 2017</a></li>
+                                <li><a href="#">Phim lẻ 2016</a></li>
+                                <li><a href="#">Phim lẻ 2015</a></li>
+                                <li><a href="#">Phim lẻ 2014</a></li>
+                                <li><a href="#">Phim lẻ 2013</a></li>
+                                <li><a href="#">Phim lẻ 2012</a></li>
+                                <li><a href="#">Phim lẻ 2011</a></li>
+                                <li><a href="#">Phim lẻ 2010</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Phim bộ</a>
+                            <ul class="sub-nav">                            
+                                <li><a href="#">Phim bộ Trung Quốc</a></li>
+                                <li><a href="#">Phim bộ Nhật Bản</a></li>
+                                <li><a href="#">Phim bộ Hàn Quốc</a></li>
+                                <li><a href="#">Phim bộ Thái Lan</a></li>
+                                <li><a href="#">Phim bộ Việt Nam</a></li>
+                                <li><a href="#">Phim bộ Pháp</a></li>
+                                <li><a href="#">Phim bộ Canada</a></li>
+                                <li><a href="#">Phim bộ Hong Kong</a></li>
+                                <li><a href="#">Phim bộ Đài Loan</a></li>
+                                <li><a href="#">Phim bộ Mỹ</a></li>
+                                <li><a href="#">Phim bộ Ấn Độ</a></li>
+                                <li><a href="#">Phim bộ Úc</a></li>
+                                <li><a href="#">Phim bộ Anh</a></li>
+                                <li><a href="#">Phim bộ Tây Ban Nha</a></li>
+                                <li><a href="#">Phim bộ Quốc Gia Khác</a></li>
+                                <li><a href="#">Phim bộ Nga</a></li>
+                                <li><a href="#">Phim bộ Ba Lan </a></li>
+                                <li><a href="#">Phim bộ Đức</a></li>
+                                <li><a href="#">Phim bộ Ý</a></li>
+                                <li><a href="#">Phim bộ Brazil</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Phim đề cử</a></li>
+                        <li><a href="#">Phim chiếu rạp</a></li>
+                        <li><a href="#">Top IMDB 2021</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main id="pBody">
+            <div class="container">
+                <!-- Breadcumbs -->
+                <div class="breadcumb">
+                    <a href="/" class="item">Phim Mới</a>
+                    <a href="#" class="item">Phim Hành Động</a>
+                    <span class="item">Trang 1</span>
+                </div>
+                <div class="w-main mb-10">
+                    <!-- Main content -->
+                    <div class="col col23">
+                        <!-- Box Content Film -->
+                        <article class="conentFilmBox mb-10">
+                            <div class="cfbTop">
+                                <div class="title">
+                                    <h1 class="pTitle">NGƯỜI ĐÀN ÔNG IRELAND</h1>
+                                    <div class="name">The Irishman <span>(2009)</span></div>
+                                </div>
+                                <div class="thumb img-lazy" data-img="/assets/imgs/film/1.jpg">
+                                    <div class="bg">
+                                        <a href="#" class="button button-red" title="Xem phim Người đàn ông Ireland">Xem phim</a>
+                                    </div>
+                                </div>
+                                <div class="info wrapContent">
+                                    <p>Một bộ phim về Natasha Romanoff trong các nhiệm vụ của cô ấy giữa hai bộ phim Civil War và Infinity War.</p>
+                                    <div class="text-right"><a href="#">[Xem thêm]</a></div>
+                                </div>
+                            </div>
+                            <div class="cfbConent mb-10">
+                                <div class="text-center">
+                                    <a href="#" class="inline"><img src="/assets/imgs/ads/320x100.gif" alt="Ads"></a>
+                                </div>
+                                <div class="text-center">
+                                    <a href="#" class="inline"><img src="/assets/imgs/ads/720x90.jpg" alt="Ads"></a>
+                                </div>
+                                <div class="watchFilm">
+                                    <iframe src="https://player.zphimmoi.tv/api/play/0625ef45db40322d96eec8ba5193a0a8?autoplay=true" height="100%" width="100%" scrolling="no" frameborder="0" allowfullscreen></iframe>
+                                </div>                                
+                            </div>
+                            <div class="cfbEpisode">
+                                <div class="title">Server HD-1</div>
+                                <ul class="episodes">
+                                    <li class="current"><a href="#">01</a></li>
+                                    <li><a href="#">02</a></li>
+                                    <li><a href="#">03</a></li>
+                                    <li><a href="#">04</a></li>
+                                    <li><a href="#">05</a></li>
+                                    <li><a href="#">06</a></li>
+                                    <li><a href="#">07</a></li>
+                                    <li><a href="#">08</a></li>
+                                </ul>
+                            </div>
+                            <div class="cfbTags">
+                                <div class="cfbTitle">Từ khóa</div>
+                                <div class="cfbtBody">
+                                    <a href="#">xem phim The Irishman</a>
+                                    <span>, </span>
+                                    <a href="#">xem phim Người đàn ông Ireland</a>
+                                    <span>, </span>
+                                    <a href="#">nguoi dan ong ireland</a>
+                                    <span>, </span>
+                                    <a href="#">nguoi dan ong</a>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- Facebook Comment -->
+                        <div class="fbCommentBox">
+                            <div class="fb-comments" data-href="https://zphimmoi.tv/phim/goa-phu-den-17405/" data-order-by="reverse_time" data-width="650"></div>
+                        </div>
+                        <!-- Related Film -->
+                        <section class="secBox">
+                            <div class="sbHeader sbhUnderline">
+                                <h2 class="text">CÓ THỂ BẠN THÍCH</h2>
+                            </div>
+                            <div class="sbBody">
+                                <!-- List Film -->
+                                <ul class="w w3 mb-10">
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/1.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="duration">126 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim Phi Vụ Thế Kỷ">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/2.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Phi Vụ Thế Kỷ</div>
+                                                <div class="name">Now You See Me</div>
+                                                <div class="duration">115 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim Quỷ Ám">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/3.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Quỷ Ám</div>
+                                                <div class="name">Incarnate</div>
+                                                <div class="duration">91 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim Góa phụ đen">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/4.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Góa phụ đen</div>
+                                                <div class="name">Black Widow</div>
+                                                <div class="duration">133 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim 101 Chú Chó Đốm">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/5.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">101 Chú Chó Đốm</div>
+                                                <div class="name">Cruella</div>
+                                                <div class="duration">140 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/1.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="duration">126 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim Phi Vụ Thế Kỷ">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/2.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Phi Vụ Thế Kỷ</div>
+                                                <div class="name">Now You See Me</div>
+                                                <div class="duration">115 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim Quỷ Ám">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/3.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Quỷ Ám</div>
+                                                <div class="name">Incarnate</div>
+                                                <div class="duration">91 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim Góa phụ đen">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/4.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Góa phụ đen</div>
+                                                <div class="name">Black Widow</div>
+                                                <div class="duration">133 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim 101 Chú Chó Đốm">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/5.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">101 Chú Chó Đốm</div>
+                                                <div class="name">Cruella</div>
+                                                <div class="duration">140 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim Quỷ Ám">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/3.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Quỷ Ám</div>
+                                                <div class="name">Incarnate</div>
+                                                <div class="duration">91 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film" title="Xem phim Góa phụ đen">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/4.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Góa phụ đen</div>
+                                                <div class="name">Black Widow</div>
+                                                <div class="duration">133 phút</div>
+                                                <div class="ribbon">HD-Vietsub</div>
+                                            </div>
+                                        </a>
+                                    </li>                                    
+                                </ul>
+                            </div>
+                        </section>
+                        <!-- Ads -->
+                        <div class="adsBox">
+                            <a href="#">
+                                <img src="/assets/imgs/ads/728x90.gif" alt="Ads">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Sidebar -->
+                    <div class="col col13">
+                        <!-- Ads -->
+                        <div class="adsBox ba300x600">
+                            <a href="#" target="_blank">
+                                <img src="/assets/imgs/ads/1-300x600.gif" alt="Home sidebar ads 300x600">
+                            </a>
+                        </div>
+                        <!-- Fanpage -->
+                        <section class="secBox sbsbFanPage">
+                            <div class="sbHeader sbhIcon sbhiStar">
+                                <h2 class="text">Fanpage</h2>
+                            </div>
+                            <div class="sbBody text-center">
+                                <div class="fb-page" data-href="https://www.facebook.com/zphimmoi/" data-tabs="" data-width="300" data-height="" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false">
+                                    <blockquote cite="https://www.facebook.com/zphimmoi/" class="fb-xfbml-parse-ignore">
+                                        <a href="https://www.facebook.com/zphimmoi/">Phim Mới</a>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- Phim lẻ hot trong tuần -->
+                        <section class="secBox sbsbPhim">
+                            <div class="sbHeader sbhIcon sbhiStar">
+                                <h2 class="text">Phim lẻ hot trong tuần</h2>
+                            </div>
+                            <div class="sbBody">
+                                <ul class="list">
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/1.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/2.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/3.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/4.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/5.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/6.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                        <!-- Ads -->
+                        <div class="adsBox ba300x250">
+                            <a href="#" target="_blank">
+                                <img src="/assets/imgs/ads/2-300x250.gif" alt="Home sidebar ads 300x250">
+                            </a>
+                        </div>
+                        <!-- Phim bộ hot trong tuần -->
+                        <section class="secBox sbsbPhim">
+                            <div class="sbHeader sbhIcon sbhiStar">
+                                <h2 class="text">Phim bộ hot trong tuần</h2>
+                            </div>
+                            <div class="sbBody">
+                                <ul class="list">
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/1.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/2.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/3.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/4.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/5.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="film2" title="Xem phim Người Sắt (Thuyết Minh)">
+                                            <div class="thumb img-lazy" data-img="/assets/imgs/film/6.jpg"></div>
+                                            <div class="info">
+                                                <div class="title">Người Sắt (Thuyết Minh)</div>
+                                                <div class="name">Iron Man</div>
+                                                <div class="visited">Lượt xem: <span>131,996</span></div>
+                                                <div class="rating">
+                                                    <div class="score"></div>
+                                                    <div class="over"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                        <!-- Ads -->
+                        <div class="adsBox ba300x250">
+                            <a href="#" target="_blank">
+                                <img src="/assets/imgs/300x250.gif" alt="Home sidebar ads 300x250">
+                            </a>
+                        </div>
+                        <!-- Từ khóa -->
+                        <section class="secBox sbsbTags">
+                            <div class="sbHeader sbhIcon sbhiTags">
+                                <h2 class="text">Từ khóa nổi bật</h2>
+                            </div>
+                            <div class="sbBody">
+                                <ul class="tags">
+                                    <li class="tag"><a href="#">Tội phạm</a></li>
+                                    <li class="tag"><a href="#">Tình yêu</a></li>
+                                    <li class="tag"><a href="#">Marvel</a></li>
+                                    <li class="tag"><a href="#">Ma cà rồng</a></li>
+                                    <li class="tag"><a href="#">Cảnh sát</a></li>
+                                    <li class="tag"><a href="#">Zombie</a></li>
+                                    <li class="tag"><a href="#">Drama</a></li>
+                                    <li class="tag"><a href="#">Siêu nhân</a></li>
+                                    <li class="tag"><a href="#">Anh hùng</a></li>
+                                    <li class="tag"><a href="#">Hoạt hình</a></li>
+                                    <li class="tag"><a href="#">Anime</a></li>
+                                    <li class="tag"><a href="#">Virus</a></li>
+                                    <li class="tag"><a href="#">Thảm họa</a></li>
+                                    <li class="tag"><a href="#">Quái vật</a></li>
+                                    <li class="tag"><a href="#">Ác quỷ</a></li>
+                                    <li class="tag"><a href="#">Châu tinh trì</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>                
+            </div>
+        </main>
+        <footer id="pFooter">
+            <div class="container">
+                <div class="pfLeft">
+                    <a href="/" class="logo"><span>zphimmoi.tv</span></a>
+                    <div class="content">
+                        <p>IP: <span>2402:800:63a4:aeec:64f2:c9e9:6b01:ba05 (VN)</span></p>
+                        <p>Email: <a href="mailto:ads@zphimmoi.com" target="_blank" rel="nofollow">ads@zphimmoi.com</a></p>
+                        <p>Telegram: <a href="https://t.me/zphimmoi" target="_blank" rel="nofollow">zphimmoi</a></p>
+                    </div>
+                </div>
+                <ul class="pfRight">
+                    <li>
+                        <span class="title">Phim mới</span>
+                        <ul class="sub-nav">
+                            <li><a href="#">Phim lẻ mới</a></li>
+                            <li><a href="#">Phim bộ mới</a></li>
+                            <li><a href="#">Phim chiếu rạp</a></li>
+                            <li><a href="#">Phim đề cử</a></li>
+                            <li><a href="#">Anime</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="title">Phim lẻ</span>
+                        <ul class="sub-nav">
+                            <li><a href="#">Phim hành động</a></li>
+                            <li><a href="#">Phim kiếm hiệp</a></li>
+                            <li><a href="#">Phim kinh dị</a></li>
+                            <li><a href="#">Phim viễn tưởng</a></li>
+                            <li><a href="#">Phim hoạt hình</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="title">Phim bộ</span>
+                        <ul class="sub-nav">
+                            <li><a href="#">Phim bộ Hàn Quốc</a></li>
+                            <li><a href="#">Phim bộ Trung Quốc</a></li>
+                            <li><a href="#">Phim bộ Mỹ</a></li>
+                            <li><a href="#">Phim bộ Việt Nam</a></li>
+                            <li><a href="#">Phim bộ Hồng Kông</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    <div id="fb-root"></div>    
+    <div id="scrollTop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15.474" height="15.476" viewBox="0 0 15.474 15.476">
+            <path id="arrow" d="M15.094,6.853,8.657.416A1.3,1.3,0,0,0,6.818,2.254l5.517,5.517L6.818,13.289a1.3,1.3,0,0,0,1.839,1.839l6.437-6.437A1.3,1.3,0,0,0,15.094,6.853Zm-7.74-.39L2.243,1.077a1.268,1.268,0,0,0-1.859,0,1.438,1.438,0,0,0,0,1.959L4.566,7.443.384,11.85a1.438,1.438,0,0,0,0,1.959,1.268,1.268,0,0,0,1.859,0L7.354,8.422A1.438,1.438,0,0,0,7.354,6.463Z" transform="translate(-0.035 15.475) rotate(-90)"/>
+        </svg>
+    </div>
+    <script src="/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/owl2.2.3.4/owl.carousel.min.js"></script>
+    <script>       
+        // Lazy load image on site
+        document.addEventListener('DOMContentLoaded', lazyImage('img-lazy'));
+        // Lazy load button share social
+        (function() {
+            var loaded = false;
+            var exitDom = document.getElementsByClassName('a2a_kit');
+            if(exitDom.length > 0){
+                window.addEventListener("scroll", function() {
+                    if (!loaded) {
+                        lazyScript("//static.addtoany.com/menu/page.js", function() {
+                            a2a.fill_menus("page");
+                        });
+                        loaded = true;
+                    }
+                })
+            }
+        })();
+        // Lazy Load video Youtube
+        (function(){
+            var youtube = document.querySelectorAll(".youtube");
+            for(var i=0; i<youtube.length; i++){
+                var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg";            
+                var image = new Image();
+                image.src = source;
+                image.addEventListener("load", function(){
+                    youtube[i].appendChild(image);
+                }(i));
+                youtube[i].addEventListener("click", function(){
+                    var iframe = document.createElement("iframe");
+                    iframe.setAttribute("frameborder", "0");
+                    iframe.setAttribute("allowfullscreen", "");
+                    iframe.setAttribute("allow", "autoplay");
+                    iframe.setAttribute("src", "https://www.youtube.com/embed/"+ this.dataset.embed +"?rel=0&showinfo=0&autoplay=1" );
+                    this.innerHTML = "";
+                    this.appendChild(iframe);
+                });                
+            }
+        })();
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel({
+                loop:true,                
+                responsive:{
+                    0:{
+                        items:1,
+                        stagePadding: 40,
+                        margin: 16,
+                        nav: false,
+                        dots: false
+                    },
+                    600:{
+                        items:3,
+                        margin: 16,
+                        nav: false,
+                        dots: false
+                    },
+                    1000:{
+                        items:4,
+                        margin: 16,
+                        nav: true,
+                        dots: false
+                    }
+                }
+            });
+            $(".tabBox").on("click", ".controls a", function(e){
+                e.preventDefault();
+                $(this).closest(".controls").find("li").removeClass("current");
+                $(this).closest(".tabBox").find(".tabContent").removeClass("open");
+                var id = $(this).attr("href");                
+                $(id).addClass("open");
+                $(this).closest("li").addClass("current");                
+            });            
+            $(".mainNav").on("click", ">li", function(e){
+                var offset = $(this).offset();
+                if(offset.left <= 200){
+                    $(this).find(".sub-nav").css({
+                        left:0,
+                        right: "inherit"
+                    });
+                }
+            })
+            $("#scrollTop").click(function(e) {
+                e.preventDefault();
+                window.scroll({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            });
+            $(window).scroll(function() {                    
+                var $this = $(this);
+                if ($this.scrollTop() >= 200) {
+                    $("#scrollTop").addClass("show");
+                } else {
+                    $("#scrollTop").removeClass("show");
+                }        
+            });
+        });
+    </script>
+</body>
+</html>

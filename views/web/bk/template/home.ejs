@@ -1,0 +1,140 @@
+<%-include('header')%>
+    <div class="row top-movie">
+        <div class="col-lg-12">
+            <h2 class="header-list-index" style="margin-top: 0px;">
+                <span class="title-list-index">Phim đề cử</span>
+            </h2>
+            <div class="top-movie-list block-wrapper">
+                <div class="list_carousel">
+                    <ul id="movie-carousel-top">
+                        <%-html.htmlSlider(data.slider)%>
+                    </ul>
+                    <div class="clear"></div>
+                    <a id="prevTop" class="prev" rel="nofollow">
+                        <span class="arrow-icon left"></span>
+                    </a>
+                    <a id="nextTop" class="next" rel="nofollow">
+                        <span class="arrow-icon right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row movie-update">
+                <div class="col-left">
+                    <div class="ad-300">
+                        <img src="/assets/images/banner/300x600.svg">
+                    </div>
+                </div>
+                <div class="col-right">
+                    <div id="tabs-movie">
+                        <ul class="tabs-movie-block">
+                            <li class="tab-movie">
+                                <a href="#tabs-1" rel="nofollow">Phim lẻ mới</a>
+                            </li>
+                            <li class="tab-movie">
+                                <a href="#tabs-2" rel="nofollow">Phim bộ mới</a>
+                            </li>
+                            <li class="tab-movie">
+                                <a href="#tabs-3" rel="nofollow">Anime mới</a>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                        <h2 class="hidden">Phim lẻ mới</h2>
+                        <ul class="tab-content" id="tabs-1">
+                            <%-html.htmlNews(data.news.movies)%>
+                        </ul>
+                        <h2 class="hidden">Phim bộ mới</h2>
+                        <ul class="tab-content" id="tabs-2">
+                            <%-html.htmlNews(data.news.series)%>
+                        </ul>
+                        <div class="clear"></div>
+                        <h2 class="hidden">Anime mới</h2>
+                        <ul class="tab-content" id="tabs-3">
+                            <%-html.htmlNews(data.news.anime)%>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="ad-mobile">
+                <img src="/assets/images/banner/mobile2.svg">
+            </div>
+            <div class="movie-list-index home-v2">
+                <h2 class="header-list-index">
+                    <span class="title-list-index">Phim đề cử mới</span>
+                    <a class="more-list-index" href="/danh-sach/?type=phim-de-cu" title="Phim đề cử mới nhất">Xem tất cả</a>
+                </h2>
+                <div class="last-film-box-wrapper">
+                    <ul class="last-film-box" id="movie-last-theater">
+                        <%-html.htmlDefault(data.list.recommended)%>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="ad-mobile">
+                <img src="/assets/images/banner/mobile3.svg">
+            </div>
+            <div class="movie-list-index home-v2">
+                <h2 class="header-list-index">
+                    <span class="title-list-index">Phim chiếu rạp mới</span>
+                    <a class="more-list-index" href="/danh-sach/?type=phim-chieu-rap" title="Phim chiếu rạp mới nhất">Xem tất cả</a>
+                </h2>
+                <div class="last-film-box-wrapper">
+                    <ul class="last-film-box" id="movie-last-theater">
+                        <%-html.htmlDefault(data.list.cinema)%>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="ad-mobile">
+                <img src="/assets/images/banner/mobile4.svg">
+            </div>
+            <div class="movie-list-index home-v2">
+                <h2 class="header-list-index">
+                    <span class="title-list-index">Phim lẻ mới cập nhật</span>
+                    <a class="more-list-index" href="/danh-sach/?type=phim-le" title="Phim lẻ mới nhất">Xem tất cả</a>
+                </h2>
+                <div class="last-film-box-wrapper">
+                    <ul class="last-film-box" id="movie-last-movie">
+                        <%-html.htmlDefault(data.list.movies)%>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="ad-mobile">
+                <img src="/assets/images/banner/mobile5.svg">
+            </div>
+            <div class="movie-list-index home-v2">
+                <h2 class="header-list-index">
+                    <span class="title-list-index">Phim bộ mới cập nhật</span>
+                    <a class="more-list-index" href="/danh-sach/?type=phim-bo" title="Phim bộ mới nhất">Xem tất cả</a>
+                </h2>
+                <div class="last-film-box-wrapper">
+                    <ul class="last-film-box" id="movie-last-series">
+                        <%-html.htmlDefault(data.list.series)%>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="ad-mobile">
+                <img src="/assets/images/banner/mobile6.svg">
+            </div>
+            <div class="movie-list-index home-v2">
+                <h2 class="header-list-index">
+                    <span class="title-list-index">Phim hoạt hình mới cập nhật</span>
+                    <a class="more-list-index" href="/danh-sach/?type=phim-hoat-hinh" title="Phim hoạt hình mới nhất">Xem tất cả</a>
+                </h2>
+                <div class="last-film-box-wrapper">
+                    <ul class="last-film-box" id="movie-last-cartoon">
+                        <%-html.htmlDefault(data.list.cartoon)%>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <%-include('sidebar')%>
+<%-include('footer')%>

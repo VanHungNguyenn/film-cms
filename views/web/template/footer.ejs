@@ -1,0 +1,93 @@
+<footer>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 footer-logo-film"></div>
+                <div class="col-lg-6">
+                    <div class="footer-link">
+                        <h3 class="footer-link-head">Phim Mới</h3>
+                        <a href="/danh-sach/?type=phim-le" title="Phim lẻ mới">Phim lẻ mới</a>
+                        <a href="/danh-sach/?type=phim-bo" title="Phim bộ mới">Phim bộ mới</a>
+                        <a href="/danh-sach/?type=phim-chieu-rap" title="Phim chiếu rạp 2013">Phim chiếu rạp</a>
+                        <a href="/danh-sach/?type=phim-de-cu" title="Phim đề cử hay">Phim đề cử</a>
+                        <a href="/danh-sach/?type=anime" title="Anime hay">Anime</a>
+                    </div>
+                    <div class="footer-link">
+                        <h3 class="footer-link-head">Phim Lẻ</h3>
+                        <a href="/danh-sach/?type=phim-le&category=phim-hanh-dong">Phim hành động</a>
+                        <a href="/danh-sach/?type=phim-le&category=phim-co-trang">Phim kiếm hiệp</a>
+                        <a href="/danh-sach/?type=phim-le&category=phim-kinh-di">Phim kinh dị</a>
+                        <a href="/danh-sach/?type=phim-le&category=phim-vien-tuong">Phim viễn tưởng</a>
+                        <a href="/danh-sach/?type=phim-le&category=phim-hoat-hinh">Phim hoạt hình</a>
+                    </div>
+                    <div class="footer-link">
+                        <h3 class="footer-link-head">Phim Bộ</h3>
+                        <a href="/danh-sach/?type=phim-bo&country=kr" title="Phim bộ hàn quốc mới">Phim bộ Hàn Quốc</a>
+                        <a href="/danh-sach/?type=phim-bo&country=cn" title="Phim bộ Trung Quốc mới">Phim bộ Trung Quốc</a>
+                        <a href="/danh-sach/?type=phim-bo&country=us" title="Phim bộ của Mỹ mới">Phim bộ Mỹ</a>
+                        <a href="/danh-sach/?type=phim-bo&country=vn" title="Phim bộ Việt Nam mới">Phim bộ Việt Nam</a>
+                        <a href="/danh-sach/?type=phim-bo&country=hk" title="Phim bộ Hồng Kông mới">Phim bộ Hồng Kông</a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="footer-contact">
+                        <h3 class="footer-link-head">Liên Hệ</h3>
+                        <span>IP: <%-ip%> (<%-country%>)</span>
+                        <span>Email:</span>
+                        <p><a href="mailto:ads@zphimmoi.com">ads@zphimmoi.com</a></p>
+                        <span>Telegram:</span>
+                        <p><a href="https://t.me/zphimmoi" target="_blank">ZPHIMMOI</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="banner-footer-desktop">
+    <div class="banner-ads ads-pc">
+        <span class="banner-close" data-banner="catfish_1">x</span>
+        <a class="banner-url" href="https://refpa.top/L?tag=d_1035399m_97c__[]general[]_d51790_l49345_catfish&site=1035399&ad=97" target="_blank" rel="nofollow">
+            <img class="img-fluid" src="/assets/images/customer/Girl_bright_promo_720s90.gif" alt="catfish_1">
+        </a>
+    </div>
+    <div class="banner-ads ads-mobile">
+        <span class="banner-close" data-banner="catfish_2">x</span>
+        <a class="banner-url" href="https://refpa.top/L?tag=d_1035399m_97c__[]general[]_d51790_l49345_catfish&site=1035399&ad=97" target="_blank" rel="nofollow">
+            <img class="img-fluid" src="/assets/images/customer/Girl_bright_promo_320x50.gif" alt="catfish_2">
+        </a>
+    </div>
+</div>
+<script>
+    function setCookie(name,value,hour) {
+        var expires = "";
+        if (hour) {
+            var date = new Date();
+            date.setTime(date.getTime() + (hour*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    function createScript(link) {
+        let s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = link;
+        return s;
+    }
+    let pop = getCookie("showPop");
+    if(!pop) {
+        $("head").append(createScript("https://midastouchrt.com/aas/r45d/vki/1845976/tghr.js"));
+        check = setCookie("showPop", "true", 1);
+    }
+</script>
+</body>
+</html>

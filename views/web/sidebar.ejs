@@ -1,0 +1,85 @@
+<%
+    var filmLeSidebar = (sidebarPhimLe) ? sidebarPhimLe : [];
+    var filmBoSidebar = (sidebarPhimBo) ? sidebarPhimBo : [];
+%>
+<!-- Sidebar -->
+<div class="col col13">
+    <!-- Ads -->
+    <div class="adsBox ba300x600">
+        <a href="#" target="_blank">
+            <img width="300px" height="600px" src="/assets/imgs/ads/1-300x600.gif" alt="Home sidebar ads 300x600">
+        </a>
+    </div>
+    <!-- Fanpage -->
+    <section class="secBox sbsbFanPage">
+        <div class="sbHeader sbhIcon sbhiStar">
+            <h2 class="text">Fanpage</h2>
+        </div>
+        <div class="sbBody text-center">
+            <div class="fb-page" data-href="https://www.facebook.com/zphimmoi/" data-tabs="" data-width="300" data-height="" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false">
+                <blockquote cite="https://www.facebook.com/zphimmoi/" class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/zphimmoi/">Phim Mới</a>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+    <!-- Phim lẻ hot trong tuần -->
+    <section class="secBox sbsbPhim">
+        <div class="sbHeader sbhIcon sbhiStar">
+            <h2 class="text">Phim lẻ hot trong tuần</h2>
+        </div>
+        <div class="sbBody">
+            <ul class="list">
+                <%- include('film-loop', {phims: filmLeSidebar, fileName: "film2"}) %>
+            </ul>
+        </div>
+    </section>
+    <div class="adsBox ba300x250">
+        <a href="#" target="_blank">
+            <img width="300px" height="250px" src="/assets/imgs/ads/2-300x250.gif" alt="Home sidebar ads 300x250">
+        </a>
+    </div>
+    <!-- Phim bộ hot trong tuần -->
+    <section class="secBox sbsbPhim">
+        <div class="sbHeader sbhIcon sbhiStar">
+            <h2 class="text">Phim bộ hot trong tuần</h2>
+        </div>
+        <div class="sbBody">
+            <ul class="list">
+                <%- include('film-loop', {phims: filmBoSidebar, fileName: "film2"}) %>
+            </ul>
+        </div>
+    </section>
+    <!-- Ads -->
+    <div class="adsBox ba300x250">
+        <a href="#" target="_blank">
+            <img width="300px" height="250px" src="/assets/imgs/300x250.gif" alt="Home sidebar ads 300x250">
+        </a>
+    </div>
+    <!-- Từ khóa -->
+    <section class="secBox sbsbTags">
+        <div class="sbHeader sbhIcon sbhiTags">
+            <h2 class="text">Từ khóa nổi bật</h2>
+        </div>
+        <div class="sbBody">
+            <ul class="tags">
+                <li class="tag"><a href="#">Tội phạm</a></li>
+                <li class="tag"><a href="#">Tình yêu</a></li>
+                <li class="tag"><a href="#">Marvel</a></li>
+                <li class="tag"><a href="#">Ma cà rồng</a></li>
+                <li class="tag"><a href="#">Cảnh sát</a></li>
+                <li class="tag"><a href="#">Zombie</a></li>
+                <li class="tag"><a href="#">Drama</a></li>
+                <li class="tag"><a href="#">Siêu nhân</a></li>
+                <li class="tag"><a href="#">Anh hùng</a></li>
+                <li class="tag"><a href="#">Hoạt hình</a></li>
+                <li class="tag"><a href="#">Anime</a></li>
+                <li class="tag"><a href="#">Virus</a></li>
+                <li class="tag"><a href="#">Thảm họa</a></li>
+                <li class="tag"><a href="#">Quái vật</a></li>
+                <li class="tag"><a href="#">Ác quỷ</a></li>
+                <li class="tag"><a href="#">Châu tinh trì</a></li>
+            </ul>
+        </div>
+    </section>
+</div>

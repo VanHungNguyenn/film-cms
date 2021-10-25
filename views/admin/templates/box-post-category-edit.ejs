@@ -1,0 +1,46 @@
+<!-- Box danh mục (nếu có) -->
+<% 
+var arrPC = [];  
+post.categories.forEach(item => { 
+    arrPC.push(item.id);
+});
+%>
+<% if(Object.keys(type.catetype).length > 0 && Object.keys(categories).length > 0){%>
+<% type.catetype.forEach(catetype => { %>
+<div class="accordion accordion-ui ui-state-default mb-3" id="accordion<%=catetype.id%>">
+    <div class="card">
+        <div class="card-header" id="heading<%=catetype.id%>">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%=catetype.id%>" aria-expanded="true" aria-controls="collapse<%=catetype.id%>">
+                    <%=catetype.name%>
+                </button>
+            </h2>
+        </div>
+        <div id="collapse<%=catetype.id%>" class="collapse show" aria-labelledby="heading<%=catetype.id%>" data-parent="#accordion<%=catetype.id%>">
+            <div class="card-body">
+                <% categories.forEach(item => { %>
+                    <% if(catetype.id == item.catetype){%>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" name="categories[]" value="<%=item.id%>" <%if(arrPC.includes(item.id)){ %>checked<%}%>>
+                                <label for="categories[]"><%=item.title%></label>
+                            </div>
+                        </div>
+                        <% item.Childrens.forEach(child => { %>
+                            <div class="ml-3">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <input type="checkbox" name="categories[]" value="<%=child.id%>" <%if(arrPC.includes(child.id)){ %>checked<%}%>>
+                                        <label for="categories[]"><%=child.title%></label>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <%}%>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+<% }) %>
+<%}%>

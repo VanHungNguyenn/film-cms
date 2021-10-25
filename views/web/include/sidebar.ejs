@@ -1,0 +1,63 @@
+<%
+    var filmLeSidebar = (sidebarPhimLe) ? sidebarPhimLe : [];
+    var filmBoSidebar = (sidebarPhimBo) ? sidebarPhimBo : [];
+    var sidebarTags = (menuCateTags) ? menuCateTags : [];
+%>
+
+
+<!-- Sidebar -->
+<div class="col col13">
+    <!-- Ads -->
+    <div class="adsBox ba300x600">
+        <a href="#" target="_blank">
+            <img src="/assets/imgs/ads/1-300x600.gif" alt="Home sidebar ads 300x600">
+        </a>
+    </div>
+    <!-- Phim lẻ hot trong tuần -->
+    <section class="secBox sbsbPhim">
+
+        <div class="sbBody">
+            <ul class="list">
+                <%- include('film-loop', {title: 'Phim lẻ hot trong tuần', phims: filmLeSidebar, fileName: "film2"}) %>
+            </ul>
+        </div>
+    </section>
+    <div class="adsBox ba300x250">
+        <a href="#" target="_blank">
+            <img src="/assets/imgs/ads/2-300x250.gif" alt="Home sidebar ads 300x250">
+        </a>
+    </div>
+    <!-- Phim bộ hot trong tuần -->
+    <section class="secBox sbsbPhim">
+
+        <div class="sbBody">
+            <ul class="list">
+                <%- include('film-loop', {title: 'Phim bộ hot trong tuần', phims: filmBoSidebar, fileName: "film2"}) %>
+            </ul>
+        </div>
+    </section>
+    <!-- Ads -->
+    <div class="adsBox ba300x250">
+        <a href="#" target="_blank">
+            <img src="/assets/imgs/300x250.gif" alt="Home sidebar ads 300x250">
+        </a>
+    </div>
+    <% if(sidebarTags.length>0){ %>
+    <!-- Từ khóa -->
+    <section class="secBox sbsbTags">
+        <div class="sbHeader sbhIcon sbhiTags">
+            <h2 class="text">Từ khóa nổi bật</h2>
+        </div>
+        <div class="sbBody">
+            <ul class="tags">
+                <%
+                    sidebarTags.forEach(tag => {
+                        let tagPermalink = `/${tag.slug}/`;
+                        %><li class="tag"><a href="<%=tagPermalink%>"><%=tag.title%></a></li><%
+                    })
+                %>
+            </ul>
+        </div>
+    </section>
+    <% } %>
+</div>

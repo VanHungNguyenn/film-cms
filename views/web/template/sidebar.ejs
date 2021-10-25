@@ -1,0 +1,73 @@
+<div class="col-lg-4 sidebar" id="sidebar">
+    <div class="ad-container ad-top-300-250">
+        <a href="https://reurl.cc/dGm0G2" target="_blank">
+            <img src="/assets/images/customer/11_300x600.gif">
+        </a>
+    </div>
+    <div class="clear"></div>
+    <div class="right-box top-film-week">
+        <h2 class="right-box-header star-icon">
+            <span>Phim lẻ hot trong tuần</span>
+        </h2>
+        <div class="right-box-content">
+            <ul class="list-top-movie slim-scroll" id="list-top-film-week">
+                <%-html.htmlHot(defaultValue.hot.movies)%>
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="ad-container right-box ad-300">
+        <img src="/assets/images/banner/300x250.svg">
+    </div>
+    <div class="clear"></div>
+    <div class="right-box top-film-week">
+        <h2 class="right-box-header star-icon">
+            <span>Phim bộ hot trong tuần</span>
+        </h2>
+        <div class="right-box-content">
+            <ul class="list-top-movie slim-scroll" id="list-top-film-week">
+                <%-html.htmlHot(defaultValue.hot.series)%>
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="ad-container ad-top-300-250">
+        <img src="/assets/images/banner/300x250(1).svg">
+    </div>
+    <div class="clear"></div>
+    <div class="right-box">
+        <h2 class="right-box-header tag-icon">
+            <span>Từ khóa nổi bật</span>
+        </h2>
+        <ul class="right-box-content tag-box">
+            <%
+            let tag = defaultValue.tags.split(",");
+            for(const item of tag) { %>
+                <li class="tag-item">
+                    <a class="tag-link" title="<%=item.trim()%>" href="/danh-sach/?tags=<%=item.trim()%>"><%=item.trim()%></a>
+                    <span class="tag-end">&nbsp;</span>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    <div class="ad-container right-box ad-300">
+        <img src="/assets/images/banner/300x250(2).svg">
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<div class="container ad-container banner-footer" id="footer-banner">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ad-center-980">
+                <img src="/assets/images/banner/728x90(1).svg">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ad-mobile">
+    <img src="/assets/images/banner/mobile7.svg">
+</div>
+</div>
+</div>

@@ -1,0 +1,32 @@
+<% 
+var homeAllTimeHits = (page.homeAllTimeHits) ? page.homeAllTimeHits : [];
+var filmSlider = (page.homeFilmDeCu && page.homeFilmDeCu.rows) ? page.homeFilmDeCu.rows : [];
+var filmDeCu = (page.homeFilmDeCuMoi && page.homeFilmDeCuMoi.rows) ? page.homeFilmDeCuMoi.rows : [];
+var filmLe = (page.homeFilmLeUpdated && page.homeFilmLeUpdated.rows) ? page.homeFilmLeUpdated.rows : [];
+var filmBo = (page.homeFilmBoUpdated && page.homeFilmBoUpdated.rows) ? page.homeFilmBoUpdated.rows : [];
+var filmAnime = (page.homeFilmAnimeUpdated && page.homeFilmAnimeUpdated.rows) ? page.homeFilmAnimeUpdated.rows : [];
+var filmLeMoi = (page.homeFilmLeMoi && page.homeFilmLeMoi.rows) ? page.homeFilmLeMoi.rows : [];
+var filmBoMoi = (page.homeFilmBoMoi && page.homeFilmBoMoi.rows) ? page.homeFilmBoMoi.rows : [];
+var filmAnimeMoi = (page.homeFilmAnimeMoi && page.homeFilmAnimeMoi.rows) ? page.homeFilmAnimeMoi.rows : [];
+%> 
+
+<%- include('./include/header.ejs', {pageClass: 'homePage'}) %>
+
+<body>
+  <!-- Header -->
+  <%- include('./include/navi') %>
+    <div id="main-wrapper">
+      <div class="container">
+        <%- include('./include/banner', {phims: filmSlider}) %>
+        <!-- Trending -->
+        <%- include('./include/film-loop', {title: 'Phim đề cử', phims: filmDeCu}) %>
+        <%- include('./include/film-loop', { title: 'Phim lẻ mới', phims: filmLeMoi}) %>
+        <%- include('./include/film-loop', {cssClass:'pt-0', title: 'Phim bộ mới', phims: filmAnimeMoi}) %>
+        <%- include('./include/film-loop', {cssClass:'pt-0', title: 'Anime mới', phims: filmBo}) %>
+        <%- include('./include/film-loop', {cssClass:'pt-0', title: 'Anime', phims: filmBo}) %>
+        <%- include('./include/film-loop', {cssClass:'pt-0', title: 'Phim lẻ', phims: filmLe}) %>
+        <%- include('./include/film-loop', {cssClass:'pt-0', title: 'Phim bộ', phims: filmBo}) %>
+      </div>
+    </div>
+    <%- include('./include/footer') %>
+</body>

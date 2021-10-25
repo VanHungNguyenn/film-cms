@@ -1,0 +1,111 @@
+<%
+    var homeURL = (page.curLang.ismain) ? domain : `${domain}/${page.curLang.id}`;
+    var phim = (page.pageContent) ? page.pageContent : {};
+    var episode = (page.episode) ? page.episode : {};
+    var permalink = `${homeURL}/phim/${phim.slug}-${phim.id}/`;
+    var permalinkDownload = (episode.slug) ? `${homeURL}/download/${phim.slug}-${phim.id}/${episode.slug}-${episode.id}.html` : "#";    
+    var permalinkWatch = (episode.slug) ? `${homeURL}/phim/${phim.slug}-${phim.id}/${episode.slug}-${episode.id}.html` : "#";    
+    var categories = (phim.categories) ? phim.categories : [];
+    var thumb = (phim.thumb) ? phim.thumb : {};
+    var thumbnail = thumb.url || phim.thumb_old || `/assets/imgs/no-image.gif`;
+    var imdb = (phim.imdb) ? phim.imdb : 0;
+    var cateTL = page.cateTL || [];
+    var cateQG = page.cateQG || [];
+    var cateDV = page.cateDV || [];
+    var cateDD = page.cateDD || [];
+    var cateTags = page.cateTags || [];
+    var filmRelated = (page.filmRelated && page.filmRelated.rows) ? page.filmRelated.rows : [];
+    var defualtCate = (phim.defaultcate) ? phim.defaultcate : {};
+    var permalinkCate = `${homeURL}/${defualtCate.slug}/`;
+    var episodeName = functions.getEpisodeName(episode.name);
+%>
+<%- include('./include/header.ejs', {pageClass: 'singlePage'}) %>
+<main id="pBody">
+    <div class="container">
+        <!-- Breadcumbs -->        
+        <%- page.breadcrumbs.html %>
+        <div class="w-main mb-10">
+            <!-- Main content -->
+            <div class="col col23">
+                <!-- Box Content Film -->
+                <article class="conentFilmBox mb-10">
+                    <div class="cfbTop">
+                        <div class="title">
+                            <div class="pTitle"><%=phim.title%></div>
+                            <div class="name"><%=phim.filmname%> <span>(<%=phim.filmyear%>)</span></div>
+                        </div>
+                        <div class="thumb img-lazy" data-img="<%=thumbnail%>">
+                            <div class="bg">
+                                <a href="<%=permalinkWatch%>" class="button button-red" title="Xem phim <%=phim.title%>">Xem phim</a>
+                            </div>
+                        </div>
+                        <div class="info wrapContent">
+                            <div class="wrapper">
+                                <%-phim.content%>
+                            </div>
+                            <div class="text-right"><a href="<%=permalink%>" title="<%=phim.title%>">[Xem thêm]</a></div>
+                        </div>
+                    </div>                    
+                    <div class="cfbLinkDownload">
+                        <h1 class="filmDownloadListTitle">Tải phim <%=phim.title%> - <%=phim.filmname%> (<%=phim.filmyear%>) - <%=episodeName%></h1>
+                        <div id="cfbldDetailHolder" class="downloadNowWrap">
+                            <span class="counter">5</span>
+                        </div>
+                        <script>                            
+                            var counter = 4,
+                                interval = setInterval(function() {
+                                    var e = document.getElementById("cfbldDetailHolder");
+                                    e.getElementsByClassName("counter")[0].innerHTML = counter, counter <= 0 && (clearInterval(interval), e.innerHTML = `<a href="#" class="btnDownloadNow">Tải về máy</a>`, e.classList.add("done")), counter--
+                                }, 1e3);
+                        </script>
+                    </div>
+                    <% if(cateTags.length > 0){ %>
+                    <div class="cfbTags">
+                        <div class="cfbTitle">Từ khóa</div>
+                        <div class="cfbtBody">
+                            <%
+                                cateTags.forEach((c, index) => {
+                                    let permalinkCate = `/${c.fullslug}/`;
+                                        %><a href="<%=permalinkCate%>" class="item" title="<%=c.title%>"><%=c.title%></a><%
+                                    if(index < cateTags.length-1){
+                                        %><span>, </span><%
+                                    }
+                                });
+                            %>
+                        </div>
+                    </div>
+                    <% } %>
+                </article>
+                <!-- Facebook Comment -->
+                <%
+                    var permalinkTMP = permalinkDownload.replace(/http:\/\/localhost:8080/g, 'https:\/\/zphimmoi.tv');
+                %>
+                <div class="fbCommentBox">
+                    <div class="fb-comments" data-href="<%=permalinkTMP%>" data-order-by="reverse_time" data-width="650"></div>
+                </div>
+                <% if(filmRelated.length>0){ %>
+                <!-- Related Film -->
+                <section class="secBox">
+                    <div class="sbHeader sbhUnderline">
+                        <h2 class="text">CÓ THỂ BẠN THÍCH</h2>
+                    </div>
+                    <div class="sbBody">
+                        <!-- List Film -->
+                        <ul class="w w3 mb-10">
+                            <%- include('./include/film-loop', {phims: filmRelated, fileName: "film"}) %>
+                        </ul>                        
+                    </div>
+                </section>
+                <% } %>
+                <!-- Ads -->
+                <div class="adsBox">
+                    <a href="#">
+                        <img width="720px" height="90px" src="/assets/imgs/ads/728x90.gif" alt="Ads">
+                    </a>
+                </div>
+            </div>
+            <%- include("./include/sidebar") %>
+        </div>
+    </div>
+</main>
+<%- include('./include/footer.ejs') %>

@@ -1,0 +1,19 @@
+<%
+    var phim = (phim) ? phim : {};
+    var tenPhim = phim.title || phim.filmname || "";
+    var tenPhim2 = phim.filmname || "";
+    var duration = phim.filmtime || "";
+    var permalink = `/phim/${phim.slug}-${phim.id}/`;
+    var thumbPhim = (phim.thumb) ? phim.thumb : {};
+    var thumbnail = thumbPhim.url || phim.thumb_old || "/assets/imgs/no-image.gif";
+%>
+<li>
+    <a href="<%=permalink%>" class="film3">
+        <div class="thumb img-lazy" data-img="<%=thumbnail%>"></div>
+        <div class="info">
+            <div class="title"><%=tenPhim%></div>
+            <div class="name"><%=tenPhim2%></div>
+            <div class="duration"><%=duration%></div>
+        </div>
+    </a>
+</li>

@@ -1,0 +1,268 @@
+<% 
+var pageClass=(pageClass) ? pageClass : "" ; 
+var page=(page) ? page : {}; 
+var curLang=(page.curLang) ? page.curLang : {}; 
+var homeURL=(curLang.ismain) ? domain : `${domain}/${curLang.id}`; 
+var menuCateTL=(menuCateTL) ? menuCateTL : []; 
+var menuCateQG=(menuCateQG) ? menuCateQG : []; 
+var maxYear=newDate().getFullYear() || 2020; %>
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="googlebot" content="noindex" />
+    <meta name="googlebot-news" content="nosnippet" />
+    <meta name="robots" content="noindex, nofollow" />
+    <%-page.seoMeta%> <% try{ var seoSchema=(page.seoSchema &&
+    page.seoSchema.length> 0) ? `[${page.seoSchema}]` : ""; var seoSchemaArr =
+    (seoSchema.length > 0) ? JSON.parse(seoSchema) : [];
+    seoSchemaArr.forEach(schemaDom => { var schemaText =
+    JSON.stringify(schemaDom) || ""; if(schemaText.length > 2){ var schemaItem =
+    `
+    <script type="application/ld+json">
+      ${schemaText}
+    </script>
+    `; %> <%- schemaItem %> <% } }); }catch(err){ %> <%-(page.seoSchema && 1==1)
+    ? `
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@graph":[${page.seoSchema}]}
+    </script>
+    ` : ""%> <% console.log("Error parse JSON") } %>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/assets/imgs/favicon.png"
+      data-spai-eager="1"
+      sizes="16x16"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="/assets/fonts/utm_cafeta-webfont.woff"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="/assets/js/owl2.2.3.4/assets/owl.carousel.css"
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <script>
+      var token = "<%=(session.ajaxpagetoken)?session.ajaxpagetoken:''%>",
+        domain = "<%=(domain)?domain:''%>",
+        ldomain =
+          "<%=(page.curLang && page.curLang.ismain==false)?`${domain}/${page.curLang.id}`:domain;%>",
+        hasWebP = !1;
+      function lazyImage(e) {
+        return function (n) {
+          var o,
+            t = document.querySelectorAll("." + e);
+          function a(n) {
+            (n.onload = function () {
+              n.classList.remove(e);
+            }),
+              n.getAttribute("data-img") &&
+                (n.style.backgroundImage = "url('".concat(
+                  n.getAttribute("data-img"),
+                  "')"
+                )),
+              "IntersectionObserver" in window && o.unobserve(n);
+          }
+          if ("IntersectionObserver" in window)
+            (o = new IntersectionObserver(
+              function (e) {
+                e.forEach(function (e) {
+                  e.intersectionRatio > 0 && a(e.target);
+                });
+              },
+              { rootMargin: "0px", threshold: 0.05 }
+            )),
+              t.forEach(function (e) {
+                o.observe(e);
+              });
+          else for (var r = 0; r < t.length; r++) a(t[r]);
+        };
+      }
+      function lazyScript(e, n) {
+        var o = document.createElement("script");
+        (o.async = !0),
+          n && (o.onload = n),
+          document.head.appendChild(o),
+          (o.src = e);
+      }
+      !(function () {
+        var e = new Image();
+        (e.onload = function () {
+          hasWebP = !!(e.height > 0 && e.width > 0);
+        }),
+          (e.onerror = function () {
+            hasWebP = !1;
+          }),
+          (e.src =
+            "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA");
+      })();
+      var lazyLoad = !1;
+      function onLazyLoad() {
+        !0 !== lazyLoad &&
+          ((lazyLoad = !0),
+          document.removeEventListener("scroll", onLazyLoad),
+          document.removeEventListener("mousemove", onLazyLoad),
+          document.removeEventListener("mousedown", onLazyLoad),
+          document.removeEventListener("touchstart", onLazyLoad),
+          setTimeout(function () {
+            var e, n, o, t, a;
+            (e = window),
+              (n = document),
+              (o = "script"),
+              (e.GoogleAnalyticsObject = "ga"),
+              (e.ga =
+                e.ga ||
+                function () {
+                  (e.ga.q = e.ga.q || []).push(arguments);
+                }),
+              (e.ga.l = 1 * new Date()),
+              (t = n.createElement(o)),
+              (a = n.getElementsByTagName(o)[0]),
+              (t.async = 1),
+              (t.src = "https://www.google-analytics.com/analytics.js"),
+              a.parentNode.insertBefore(t, a),
+              ga("create", "UA-145690480-1", "auto"),
+              ga("send", "pageview"),
+              (window.onerror = function (e, n, o, t, a) {
+                var r =
+                  location.href +
+                  ": " +
+                  e +
+                  " (" +
+                  n +
+                  ":" +
+                  o +
+                  (t ? ":" + t : "") +
+                  ")";
+                ga("send", "event", "performance", "error", r, 1, {
+                  nonInteraction: !0,
+                }),
+                  (window.onerror = null);
+              }),
+              lazyScript(
+                "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=734723923893283&autoLogAppEvents=1"
+              );
+          }, 1));
+      }
+      document.addEventListener("scroll", onLazyLoad),
+        document.addEventListener("mousemove", onLazyLoad),
+        document.addEventListener("mousedown", onLazyLoad),
+        document.addEventListener("touchstart", onLazyLoad),
+        document.addEventListener("load", function () {
+          (document.body.clientHeight !=
+            document.documentElement.clientHeight &&
+            0 == document.documentElement.scrollTop &&
+            0 == document.body.scrollTop) ||
+            onLazyLoad();
+        });
+    </script>
+  </head>
+
+  <body>
+    <div id="page" class="<%=pageClass%>">
+      <header id="pHeader">
+        <div class="phTop">
+          <div class="container">
+            <a href="<%=homeURL%>" class="logo" title="Logo <%=sitenameSlug%>">
+              <span> <%=sitename%> </span>
+            </a>
+            <div class="formSearchWrap">
+              <form action="/danh-sach/">
+                <input
+                  type="text"
+                  name="s"
+                  placeholder="Tìm: tên phim, đạo diễn, diễn viên"
+                />
+                <button>&nbsp;</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="phBot">
+          <nav class="container">
+            <ul class="mainNav clear">
+              <li class="current"><a href="/">Phim mới</a></li>
+              <li>
+                <a href="javascript:void(0)" rel="nofollow">Thể loại</a>
+                <% if(menuCateTL.length>0){ %>
+                <ul class="sub-nav">
+                  <% menuCateTL.forEach(c=> { %>
+                  <li>
+                    <a href="<%=homeURL%>/<%=c.slug%>/" title="<%=c.title%>">
+                      <%=c.title%>
+                    </a>
+                  </li>
+                  <% }); %>
+                </ul>
+                <% } %>
+              </li>
+              <li>
+                <a href="javascript:void(0)" rel="nofollow">Quốc Gia</a>
+                <% if(menuCateQG.length>0){ %>
+                <ul class="sub-nav">
+                  <% menuCateQG.forEach(c=> { %>
+                  <li>
+                    <a href="<%=homeURL%>/<%=c.slug%>/" title="<%=c.title%>">
+                      <%=c.title%>
+                    </a>
+                  </li>
+                  <% }); %>
+                </ul>
+                <% } %>
+              </li>
+              <li>
+                <a href="javascript:void(0)" rel="nofollow">Phim lẻ</a>
+                <ul class="sub-nav">
+                  <% for(let i=maxYear; i>=2010 ; i--){ let cateName = `Phim lẻ
+                  ${i}`; %>
+                  <li>
+                    <a
+                      href="<%=homeURL%>/phim-le/?year=<%=i%>"
+                      title="<%=cateName%>"
+                    >
+                      <%=cateName%>
+                    </a>
+                  </li>
+                  <% } %>
+                </ul>
+              </li>
+              <li>
+                <a href="javascript:void(0)" rel="nofollow">Phim bộ</a>
+                <% if(menuCateQG.length>0){ %>
+                <ul class="sub-nav">
+                  <% menuCateQG.forEach(c=> { let cateName = `Phim bộ
+                  ${c.title}`; %>
+                  <li>
+                    <a
+                      href="<%=homeURL%>/phim-bo/?country=<%=c.slug%>"
+                      title="<%=cateName%>"
+                    >
+                      <%=cateName%>
+                    </a>
+                  </li>
+                  <% }); %>
+                </ul>
+                <% } %>
+              </li>
+              <li><a href="<%=homeURL%>/phim-de-cu/">Phim đề cử</a></li>
+              <li><a href="<%=homeURL%>/phim-chieu-rap/">Phim chiếu rạp</a></li>
+              <li>
+                <a href="<%=homeURL%>/phim-top-imdb/?year=<%=maxYear%>"
+                  >Top IMDB <%=maxYear%></a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
+  </body>
+</html>

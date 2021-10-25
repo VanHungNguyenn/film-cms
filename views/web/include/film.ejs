@@ -1,0 +1,48 @@
+<%
+
+    var phim = (phim) ? phim : {};
+    var title = phim.title || phim.filmname || "";
+    var tenPhim2 = phim.filmname || "";
+    var duration = phim.filmtime || "Chưa rõ";
+    var permalink = `/movie/${phim.slug}-${phim.id}/`;
+    var thumbPhim = (phim.thumb) ? phim.thumb : {};
+    var thumbnail = thumbPhim.url || phim.thumb_old || "/assets/imgs/no-image.gif";
+    var imdb = phim.imdb || "N/A";
+    var filmyear = phim.filmyear || "N/A";
+    
+
+%>
+ <div class="film-item">
+   <div class="film-poster">
+      <a href="<%=permalink%>"
+         ><img
+            src="<%=thumbnail %> "
+            alt=""
+      /></a>
+   </div>
+   <div class="film-detail">
+      <div class="film-infor">
+         <span class="film-infor-item">
+            <em class="fas fa-star"></em>
+            <%=imdb%>
+         </span>
+         <span class="film-infor-item"
+            ><strong>HD</strong></span
+         >
+         <span class="film-infor-item"
+            ><%=filmyear%> </span
+         >
+      </div>
+      <h3 class="film-name">
+         <a href="<%=permalink%>" title=""
+            ><%= title %></a
+         >
+      </h3>
+      <div class="film-btn">
+         <a href="<%=permalink%>" class="btn btn-play">
+            <em class="fas fa-play"></em>
+            Watch now</a
+         >
+      </div>
+   </div>
+</div>

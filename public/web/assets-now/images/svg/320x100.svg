@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="320" height="100" viewBox="0 0 320 100">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 25px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #979797;
+        font-family: "Myriad Pro";
+      }
+
+      .cls-2 {
+        font-size: 37.5px;
+      }
+    </style>
+  </defs>
+  <image id="Background" width="320" height="100" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAABkCAYAAAD32uk+AAABY0lEQVR4nO3UAQ0AIAzAsIOg+3cHQtZaWLKzu28Agq7oQJUBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCDTNzAfMcwJRuWUyUQAAAABJRU5ErkJggg=="/>
+  <text id="ads_zphimmoi.com" data-name="ads@zphimmoi.com" class="cls-1" x="53" y="36">ads@zphimmoi.com</text>
+  <text id="_320_x_100" data-name="320 x 100" class="cls-2" x="85.585" y="82.771">320 x 100</text>
+</svg>

@@ -1,0 +1,18 @@
+<%
+    var homeURL = (page.curLang.ismain) ? domain : `${domain}/${page.curLang.id}`;
+    var pageContent = (page.pageContent) ? page.pageContent : {};    
+    var films = (page.films) ? page.films : {};
+%>
+<%- include('./include/header.ejs') %>
+
+<body>
+    <%- include('./include/navi') %>
+    <div id="main-wrapper">
+        <div class="container">
+            <%- include('./include/film-loop', { title: 'Search..', phims: films.rows || [], fileName: "film"}) %>
+        </div>
+      </div>
+
+    <%- include('./include/footer') %>
+  </body>
+  

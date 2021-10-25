@@ -1,0 +1,54 @@
+<%- include("./include/header") %>
+    <!--Main content-->
+    <div class="site-body">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0">
+                <li class="breadcrumb-item"><a href="/<%=dashboard%>"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="/<%=dashboard%>/feedback">Phản hồi</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
+            </ol>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="datatable-search-header">
+                                <select id="slBulk">
+                                    <option value="">Bulk actions</option>
+                                    <option value="delete">Xóa</option>
+                                </select>
+                                <button id="btnBulk" type="button" class="btn btn-primary">Ok</button>
+                                <div class="datatable-filter-holder">
+                                    <input class="item-filter" type="text" placeholder="Tìm kiếm...">
+                                    <select class="item-filter">
+                                        <option value="%">Trang thái</option>
+                                        <option value="finished">Đã xử lý</option>
+                                        <option value="pending">Chờ</option>
+                                    </select>
+                                    <button type="button" id="btnDTFileter" class="btn btn-primary">Tìm</button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="datatable-sside" class="table table-bordered datatable-style" data-type="feedback">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox" name="select_all" value="1" id="datatable-select-all"></th>
+                                            <th>Người gửi</th>
+                                            <th>Tiêu đề</th>
+                                            <th>Nội dung</th>
+                                            <th class="text-center"><i class="fas fa-clock" title="Ngày tạo"></i></th>
+                                            <th class="text-center"><i class="fas fa-power-off" title="Ngày duyệt"></i></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/<%=dashboard%>/assets/datatables/datatable.feedback.js" charset="utf-8"></script>
+    <script src="/<%=dashboard%>/assets/datatables/datatable.all.js" charset="utf-8"></script>
+    <%- include("./include/footer") %>

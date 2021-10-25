@@ -1,0 +1,175 @@
+<%- include("./include/header") %>
+<!--Main content-->
+<div class="site-body">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-transparent mb-0">
+            <li class="breadcrumb-item"><a href="/<%=dashboard%>"><i class="fas fa-home"></i> Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="/<%=dashboard%>/post/<%=film.posttype%>">Phim</a></li>
+            <li class="breadcrumb-item"><a href="/<%=dashboard%>/post/<%=film.posttype%>/edit/<%=film.id%>"><%=film.title%></a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tập</li>
+        </ol>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="datatable-search-header">
+                            <select id="slBulk">
+                                <option value="">Bulk actions</option>
+                                <option value="delete">Xóa</option>
+                            </select>
+                            <button id="btnBulk" type="button" class="btn btn-primary">Ok</button>
+                            <div class="datatable-filter-holder">
+                                <input class="item-filter" type="text" placeholder="Tìm kiếm...">
+                                <% 
+                                    var servers = (servers) ? servers : [];
+                                    if(servers.length>0){
+                                %>
+                                    <select class="item-filter">
+                                        <option value="%">Server</option>
+                                <%
+                                        servers.forEach(s=>{
+                                %>
+                                            <option value="<%=s.id%>"><%=s.name%></option>
+                                <%
+                                        });
+                                %>
+                                    </select>
+                                <%
+                                    }
+                                %>
+                                <select class="item-filter">
+                                    <option value="%">Trạng thái</option>
+                                    <option value="on">Hoạt động</option>
+                                    <option value="off">Dừng</option>
+                                </select>
+                                <button id="btnDTFileter" type="button" class="btn btn-primary">Tìm</button>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary btn-load-modal-add">Thêm mới</button>
+                            <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#loadEpisodeModal">Load mới</button>
+                        </div>                           
+                        <table id="datatable-sside" class="table table-bordered datatable-style" data-type="episode">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="select_all" value="1" id="datatable-select-all"></th>
+                                    <th>Tên tập</th>
+                                    <th>Đường dẫn</th>
+                                    <th>Server</th>
+                                    <th>Ghi chú</th>
+                                    <th class="text-center"><i class="fas fa-power-off" title="Hoạt động"></i></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+<!-- Model -->
+<div class="modal fade" id="frmModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><span id="frmTitleAction">Sửa</span> Tập</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="error-modal-edit"></div>
+                <form action="/<%=dashboard%>/episode/edit" method="POST">                    
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Tên tập</label>
+                        <input type="hidden" name="postid" id="postid" value="<%=film.id%>" autocomplete="off" required>
+                        <input type="hidden" name="id" id="id" autocomplete="off" required>
+                        <input class="form-control" type="text" name="name" id="name" placeholder="Tên tập">
+                    </div>
+                    <div class="form-group">
+                        <label for="url" class="col-form-label">Đường dẫn</label>
+                        <input class="form-control" type="text" name="url" id="url" placeholder="Đường dẫn">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Diễn giải</label>
+                        <textarea class="form-control tinymce" name="description" id="description" placeholder="Diễn giải"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="note">Ghi chú</label>
+                        <textarea class="form-control tinymce" name="note" id="note" placeholder="Ghi chú"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Server</label>
+                        <select class="form-control" name="serverid" id="serverid">
+                            <option value="%">Server</option>
+                        <%                                
+                            servers.forEach(s=>{
+                        %>
+                            <option value="<%=s.id%>"><%=s.name%></option>
+                        <%
+                            });
+                        %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <input class="form-check-input" type="checkbox" name="isblock" id="isblock">
+                            <label class="form-check-label" for="isblock">Không hiển thị</label>
+                        </div>
+                    </div>
+                    <div class="text-right mt-3">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy bỏ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Model -->
+<div class="modal fade" id="loadEpisodeModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content show">
+            <div class="modal-header">
+                <h5 class="modal-title">Load tập</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="error-modal-edit"></div>
+                <form action="/<%=dashboard%>/episode/load" method="POST">
+                    <div class="form-group">
+                        <label for="description">Server</label>
+                        <input type="hidden" name="postid" value="<%=film.id%>">
+                        <select class="form-control" name="serverid">
+                            <option value="%">Server</option>
+                        <%                                
+                            servers.forEach(s=>{
+                        %>
+                            <option value="<%=s.id%>"><%=s.name%></option>
+                        <%
+                            });
+                        %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="episodes">Danh sách tập [name|googleDriveURL]</label>
+                        <textarea class="form-control episodes" name="episodes" placeholder="0|https://drive.google.com/file/..."></textarea>
+                    </div>
+                    <div class="text-right mt-3">
+                        <button type="submit" class="btn btn-primary btn-load-episode">Load</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy bỏ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var film = (film) ? film : {};
+    try{film=JSON.parse(`<%-JSON.stringify(film)%>`);}catch(err){film={};}
+</script>
+<script src="/<%=dashboard%>/assets/datatables/datatable.episode.js" charset="utf-8"></script>
+<script src="/<%=dashboard%>/assets/datatables/datatable.all.js" charset="utf-8"></script>
+<%- include("./include/footer") %>

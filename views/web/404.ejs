@@ -1,0 +1,20 @@
+<% var homeURL = (page.curLang.ismain) ? domain :
+`${domain}/${page.curLang.id}`; var pageContent = (page.pageContent) ?
+page.pageContent : {}; var films = (page.films) ? page.films : {}; %> 
+
+ <%- include('./include/header.ejs', {pageClass: 'homePage'}) %>
+
+<body>
+	<%- include('./include/navi') %>
+	<div id="main-wrapper">
+		<div class="container">
+				<div class="notification">
+					<h2 class="notification-error">404</h2>
+					<p>Xin lỗi, trang này không tồn tại</p>
+				</div>
+		
+			<%- include("./include/sidebar") %>
+		</div>
+	</div>
+	<%- include('./include/footer.ejs') %>
+</body>

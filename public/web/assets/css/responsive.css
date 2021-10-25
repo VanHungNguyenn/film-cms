@@ -1,0 +1,163 @@
+/* Media query */
+
+@media screen and (max-width: 1600px) {
+    .detail-container {
+        padding: 20rem 2rem 2rem 2rem;
+    }
+}
+
+@media screen and (max-width: 1299px) {
+    .header-logo-full {
+        display: none;
+    }
+    #search {
+        display: none;
+    }
+    .header-logo-responsive {
+        display: block;
+    }
+    .header-btn {
+        margin-right: 0;
+    }
+    .search-button {
+        display: block;
+    }
+    #top-slider {
+        display: block;
+    }
+    .basic-film-list {
+        display: flex;
+    }
+    .top-slider-social {
+        padding: 2rem 0;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        background-color: #2f3441;
+    }
+    .top-slider-social-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .top-slider-social-box a {
+        padding: 0 2rem;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .basic-item {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .slide-film-poster {
+        display: none;
+    }
+    .slide-button-play {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .film-list-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    }
+    .filter-modal-container {
+        padding: 2rem 2rem;
+    }
+    .detail-container {
+        padding: 10rem 2rem 2rem 2rem;
+        display: block;
+    }
+    .element-left, .element-right {
+        width: 100%;
+    }
+    .detail-film-infor {
+        padding: 3rem 0 2rem 0;
+    }
+    .detail-film-poster img {
+        width: 150px;
+        height: auto;
+    }
+    .detail-film-element {
+        display: block;
+    }
+    .btn {
+        padding: 0.375rem 0.4rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        padding: 0 1rem;
+    }
+    .footer-link-ul {
+        font-size: 1.2rem;
+    }
+    .footer-link-ul li {
+        margin-right: 1.5rem;
+        display: inline-block;
+    }
+    #footer-about .about-text {
+        font-size: 1.1rem;
+    }
+    .basic-film-list {
+        display: block;
+    }
+    .basic-item {
+        display: flex;
+    }
+    .top-slider-basic-film {
+        display: none;
+    }
+    .top-slider-social {
+        display: none;
+    }
+    .slide-film-desc {
+        display: none;
+    }
+    .slide-button-play {
+        margin-bottom: 2rem;
+        margin-right: 2rem;
+    }
+    .pagination {
+        display: flex;
+        justify-content: center;
+        padding: 5rem 0;
+    }
+    .pagination ul li {
+        color: var(--primary-color);
+        list-style: none;
+        line-height: 3.5rem;
+        font-size: 1.3rem;
+        text-align: center;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all .3s ease;
+    }
+    .pagination ul li.numb {
+        height: 3.5rem;
+        width: 3.5rem;
+        border-radius: 50%;
+        margin: 0 3px;
+    }
+    .pagination ul li.dots {
+        font-size: 1.7rem;
+        cursor: pointer;
+    }
+    .pagination ul li.button {
+        padding: 0 .3rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .btn {
+        padding: .1rem .3rem;
+    }
+    .button span i {
+        display: none;
+    }
+}

@@ -1,0 +1,34 @@
+<%
+    var homeURL = (page.curLang.ismain) ? domain : `${domain}/${page.curLang.id}`;
+    var pageContent = (page.pageContent) ? page.pageContent : {};    
+    var films = (page.films) ? page.films : {};
+%>
+<%- include('./include/header.ejs', {pageClass: 'homePage'}) %>
+
+<main id="pBody">
+    <div class="container">
+        <!-- Breadcumbs -->
+        <%- page.breadcrumbs.html %>
+        <!-- Sort & Filter -->
+        <%- include("./include/box-filter") %>
+        <div class="w-main mb-10">
+            <!-- Main content -->
+            <div class="col col23">                        
+                <!-- Phim đề cử mới -->
+                <section class="secBox">
+                    <div class="sbHeader sbhUnderline">
+                        <h2 class="text"><%=pageContent.title%></h2>
+                    </div>
+                    <div class="sbBody">
+                        <!-- List Film -->
+                        <ul class="w w3 mb-10">
+                            <%- include('./include/film-loop', {phims: films.rows || [], fileName: "film"}) %>
+                        </ul>                        
+                    </div>
+                </section>                        
+            </div>
+            <%- include("./include/sidebar") %>
+        </div>
+    </div>
+</main>
+<%- include('./include/footer.ejs') %>

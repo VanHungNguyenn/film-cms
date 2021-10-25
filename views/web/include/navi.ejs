@@ -1,0 +1,441 @@
+<% var pageClass = (pageClass) ? pageClass : ""; var page = (page) ? page : {};
+var curLang = (page.curLang) ? page.curLang : {}; var homeURL = (curLang.ismain)
+? domain : `${domain}/${curLang.id}`; var menuCateTL = (menuCateTL) ? menuCateTL
+: []; var menuCateQG = (menuCateQG) ? menuCateQG : []; var maxYear = new
+Date().getFullYear() || 2020; %>
+<div id="header">
+	<div class="container">
+		<div class="header-left">
+			<a
+				href="/"
+				id="logo"
+				class="header-logo header-logo-full"
+				title="SFlix"
+			>
+				<img
+					class="main-logo"
+					src="/assets//images/logo.png"
+					alt="logo"
+				/>
+			</a>
+			<div id="header-brower">
+				<div class="header-btn" onclick="showMenu()">
+					<i class="fas fa-bars"></i> Browser
+				</div>
+				<div id="nav">
+					<div class="browser-category" id="browser-category">
+						<div class="button-exit" onclick="hideMenu()">
+							<i class="fas fa-arrow-circle-left"></i>
+						</div>
+						<ul class="navbar" id="navbar">
+							<li>
+								<a href="/"><i class="fas fa-home"></i> Home</a>
+							</li>
+							<li>
+								<a href="/movies.html"
+									><i class="fas fa-play-circle"></i>
+									Movies</a
+								>
+							</li>
+							<li>
+								<a href="#"
+									><i class="fas fa-video"></i> TV Shows</a
+								>
+							</li>
+							<li>
+								<a href="#"
+									><i class="fas fa-fire"></i> Top IMDB</a
+								>
+							</li>
+						</ul>
+						<div class="genre">
+							<h2 class="category-heading">Genre</h2>
+							<div class="genre-list">
+								<% menuCateTL.forEach(c => { %>
+								<div class="genre-item">
+									<a
+										href="<%=homeURL%>/<%=c.slug%>/"
+										title="<%=c.title%>"
+										><%=c.title%></a
+									>
+								</div>
+								<% }); %>
+							</div>
+						</div>
+						<div class="country">
+							<h2 class="category-heading">Country</h2>
+							<div class="country-list">
+								<div class="country-item">
+									<a href=""> Argentina</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Australia</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Austria</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Belgium</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Brazil</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Canada</a>
+								</div>
+								<div class="country-item">
+									<a href=""> China</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Czech Rebuplic</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Denmark</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Finland</a>
+								</div>
+								<div class="country-item">
+									<a href=""> France</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Germany</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Hong Kong</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Hungary</a>
+								</div>
+								<div class="country-item">
+									<a href=""> India</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Iceland</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Israel</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Italy</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Japan</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Luxembourg</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Mexico</a>
+								</div>
+								<div class="country-item">
+									<a href=""> Vietnam</a>
+								</div>
+								<div class="country-item">
+									<a href=""> United States of America</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="search">
+				<div class="search-content">
+					<form class="search-form search-form-full">
+						<div class="search-icon">
+							<i class="fa fa-search"></i>
+						</div>
+						<input
+							type="text"
+							name="keyword"
+							autocomplete="off"
+							placeholder="Enter keywords..."
+							class="form control search-input"
+						/>
+						<!-- Search-recommend -->
+						<div class="search-recommend">
+							<div class="search-recommend-list">
+								<a href="#" class="search-recommend-item">
+									<img
+										src="/assets//images/search-recommend-1.jpg"
+										alt=""
+									/>
+									<div class="search-recommend-infor">
+										<div class="search-recommend-title">
+											Hi Mom!
+										</div>
+										<ul>
+											<li class="search-recommend-year">
+												1970
+											</li>
+											<li class="search-recommend-time">
+												87m
+											</li>
+											<li class="search-recommend-genre">
+												Movie
+											</li>
+										</ul>
+									</div>
+								</a>
+								<a href="#" class="search-recommend-item">
+									<img
+										src="/assets//images/search-recommend-2.jpg"
+										alt=""
+									/>
+									<div class="search-recommend-infor">
+										<div class="search-recommend-title">
+											Hi Mom!
+										</div>
+										<ul>
+											<li class="search-recommend-year">
+												1970
+											</li>
+											<li class="search-recommend-time">
+												87m
+											</li>
+											<li class="search-recommend-genre">
+												Movie
+											</li>
+										</ul>
+									</div>
+								</a>
+								<a href="#" class="search-recommend-item">
+									<img
+										src="/assets//images/search-recommend-3.jpg"
+										alt=""
+									/>
+									<div class="search-recommend-infor">
+										<div class="search-recommend-title">
+											Hi Mom!
+										</div>
+										<ul>
+											<li class="search-recommend-year">
+												1970
+											</li>
+											<li class="search-recommend-time">
+												87m
+											</li>
+											<li class="search-recommend-genre">
+												Movie
+											</li>
+										</ul>
+									</div>
+								</a>
+								<a href="#" class="search-recommend-item">
+									<img
+										src="/assets//images/search-recommend-4.jpg"
+										alt=""
+									/>
+									<div class="search-recommend-infor">
+										<div class="search-recommend-title">
+											Hi Mom!
+										</div>
+										<ul>
+											<li class="search-recommend-year">
+												1970
+											</li>
+											<li class="search-recommend-time">
+												87m
+											</li>
+											<li class="search-recommend-genre">
+												Movie
+											</li>
+										</ul>
+									</div>
+								</a>
+							</div>
+							<a href="/search" class="search-recommend-result">
+								View all results
+								<i class="fas fa-chevron-right"></i>
+							</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<a
+			href="./index.html"
+			class="header-logo header-logo-responsive"
+			title="SFlix"
+		>
+			<img class="main-logo" src="/assets//images/logo.png" alt="logo" />
+		</a>
+		<div class="header-right">
+			<div class="search-button">
+				<i
+					class="search-button-mobile fa fa-search"
+					id="search-button-mobile"
+				></i>
+				<div class="search-mobile">
+					<div class="search-content-mobile">
+						<form class="search-form search-form-mobile">
+							<div class="search-icon-mobile">
+								<i class="fa fa-search"></i>
+							</div>
+							<input
+								type="text"
+								name="keyword"
+								autocomplete="off"
+								placeholder="Enter keywords..."
+								class="
+									form-control
+									search-input search-input-mobile
+								"
+							/>
+							<!-- Search-recommend -->
+							<div
+								class="search-recommend search-recommend-mobile"
+							>
+								<div class="search-recommend-list">
+									<a href="#" class="search-recommend-item">
+										<img
+											src="/assets//images/search-recommend-1.jpg"
+											alt=""
+										/>
+										<div class="search-recommend-infor">
+											<div class="search-recommend-title">
+												Hi Mom!
+											</div>
+											<ul>
+												<li
+													class="
+														search-recommend-year
+													"
+												>
+													1970
+												</li>
+												<li
+													class="
+														search-recommend-time
+													"
+												>
+													87m
+												</li>
+												<li
+													class="
+														search-recommend-genre
+													"
+												>
+													Movie
+												</li>
+											</ul>
+										</div>
+									</a>
+									<a href="#" class="search-recommend-item">
+										<img
+											src="/assets//images/search-recommend-2.jpg"
+											alt=""
+										/>
+										<div class="search-recommend-infor">
+											<div class="search-recommend-title">
+												Hi Mom!
+											</div>
+											<ul>
+												<li
+													class="
+														search-recommend-year
+													"
+												>
+													1970
+												</li>
+												<li
+													class="
+														search-recommend-time
+													"
+												>
+													87m
+												</li>
+												<li
+													class="
+														search-recommend-genre
+													"
+												>
+													Movie
+												</li>
+											</ul>
+										</div>
+									</a>
+									<a href="#" class="search-recommend-item">
+										<img
+											src="/assets//images/search-recommend-3.jpg"
+											alt=""
+										/>
+										<div class="search-recommend-infor">
+											<div class="search-recommend-title">
+												Hi Mom!
+											</div>
+											<ul>
+												<li
+													class="
+														search-recommend-year
+													"
+												>
+													1970
+												</li>
+												<li
+													class="
+														search-recommend-time
+													"
+												>
+													87m
+												</li>
+												<li
+													class="
+														search-recommend-genre
+													"
+												>
+													Movie
+												</li>
+											</ul>
+										</div>
+									</a>
+									<a href="#" class="search-recommend-item">
+										<img
+											src="/assets//images/search-recommend-4.jpg"
+											alt=""
+										/>
+										<div class="search-recommend-infor">
+											<div class="search-recommend-title">
+												Hi Mom!
+											</div>
+											<ul>
+												<li
+													class="
+														search-recommend-year
+													"
+												>
+													1970
+												</li>
+												<li
+													class="
+														search-recommend-time
+													"
+												>
+													87m
+												</li>
+												<li
+													class="
+														search-recommend-genre
+													"
+												>
+													Movie
+												</li>
+											</ul>
+										</div>
+									</a>
+								</div>
+								<a href="/search" class="search-recommend-result">
+									View all results
+									<i class="fas fa-chevron-right"></i>
+								</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="account">
+				<img src="/assets//images/account.png" alt="" />
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+<!-- Box Xuất bản -->
+<div class="accordion accordion-ui ui-state-default mb-3" id="accordionPostPublished">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsePostPublished" aria-expanded="true" aria-controls="collapsePostPublished">
+                    Xuất bản
+                </button>
+            </h2>
+        </div>
+        <div id="collapsePostPublished" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionPostPublished">
+            <div class="card-body">
+                <div class="form-group">
+                    <span>Trạng thái</span>
+                    <select name="poststatus">
+                    <option value="pending">Chờ</option>
+                    <option value="published" selected>Xuất bản</option>
+                </select>
+                </div>
+                <div class="form-group" id="timepublicform">
+                    <div>
+                        <input class="maindatefield" type="hidden" name="publishedat" value="">
+                        <span id="timepublic">Xuất bản <strong>ngay</strong></span>
+                        <a href="javascript:void(0);" id="btn-timepublic" class="btn btn-outline-primary btn-sm">Thay đổi</a>
+                    </div>
+                    <div id="timepublicwrap">
+                        <input type="text" name="tpf-day" placeholder="dd">
+                        <select name="tpf-month">
+                            <option value="1">01 - Một</option>
+                            <option value="2">02 - Hai</option>
+                            <option value="3">03 - Ba</option>
+                            <option value="4">04 - Bốn</option>
+                            <option value="5">05 - Năm</option>
+                            <option value="6">06 - Sáu</option>
+                            <option value="7">07 - Bảy</option>
+                            <option value="8">08 - Tám</option>
+                            <option value="9">09 - Chín</option>
+                            <option value="10">10 - Mười</option>
+                            <option value="11">11 - Mười một</option>
+                            <option value="12">12 - Mười hai</option>
+                        </select>
+                        <input type="text" name="tpf-year" placeholder="yyyy">
+                        <input type="text" name="tpf-hour" placeholder="HH">
+                        <span>:</span>
+                        <input type="text" name="tpf-minute" placeholder="mm">
+                        <p>
+                            <a href="javascript:void(0);" id="btn-tpf-apply" class="btn btn-primary btn-sm">Chọn</a>
+                            <a href="javascript:void(0);" id="btn-tpf-cancel" class="btn btn-outline-dark btn-sm">Hủy</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group text-right mt-3">
+                    <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger btn-reset-screenui">Giao diện mặc định</a>
+                </div>
+                <div class="form-group text-right">
+                    <button class="btn btn-outline-primary" id="btn-post-submit-preview">Xem trước</button>
+                    <button class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

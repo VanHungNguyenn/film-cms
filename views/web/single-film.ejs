@@ -1,0 +1,160 @@
+<%
+    var homeURL = (page.curLang.ismain) ? domain : `${domain}/${page.curLang.id}`;
+    var phim = (page.pageContent) ? page.pageContent : {};
+    var episode = (phim.episodes && phim.episodes[0]) ? phim.episodes[0] : {};
+    var permalink = `${homeURL}/phim/${phim.slug}-${phim.id}/`;
+    var permalinkDownload = `${homeURL}/download/${phim.slug}-${phim.id}/`;
+    var permalinkWatch = (episode.slug) ? `${homeURL}/phim/${phim.slug}-${phim.id}/${episode.slug}-${episode.id}.html` : "#";    
+    var categories = (phim.categories) ? phim.categories : [];
+    var thumb = (phim.thumb) ? phim.thumb : {};
+    var thumbnail = thumb.url || phim.thumb_old || `/assets/imgs/no-image.gif`;
+    var imdb = (phim.imdb) ? phim.imdb : 0;
+    var cateTL = page.cateTL || [];
+    var cateQG = page.cateQG || [];
+    var cateDV = page.cateDV || [];
+    var cateDD = page.cateDD || [];
+    var cateTags = page.cateTags || [];
+    var filmRelated = (page.filmRelated && page.filmRelated.rows) ? page.filmRelated.rows : [];
+    var defualtCate = (phim.defaultcate) ? phim.defaultcate : {};
+    var permalinkCate = `${homeURL}/${defualtCate.slug}/`; 
+    var banner = phim.banner_old;   
+%>
+
+<%- include('./include/header.ejs', {pageClass: 'homePage'}) %>
+
+<body>
+    <!-- Header -->
+    <%- include('./include/navi') %>
+      <div id="wrapper">
+            <div class="mw-detail" style='background-image: url(<%=banner%>);'>
+               
+                <div class="detail-container">
+                    <div class="cover-follow"></div>
+                    <div class="detail-film-poster">
+                        <img
+                            src="<%=thumbnail%>"
+                            alt=""
+                        />
+                    </div>
+                    <div class="detail-film-infor">
+                        <div class="detail-film-title"><%=phim.title%></div>
+                        <div class="detail-film-key">
+                            <div class="detail-film-quality">HD</div>
+                            <div class="detail-film-status">
+                                <i class="fas fa-video"></i>
+                                Trailer
+                            </div>
+                            <div class="detail-film-imdb">
+                                IMDB: <span><%=phim.imdb%></span>
+                            </div>
+                            <div class="detail-film-time">
+                                <span><%=phim.filmtime%></span> 
+                            </div>
+                        </div>
+                        <div class="detail-film-button">
+                            <a href="<%=permalinkWatch%>">
+                            <button class="button-server">
+                               
+                                    <i class="fa fa-play"></i>
+                                    <div>Watch</div>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="detail-film-description">
+                            <div class="detail-film-description-title">
+                                <strong>Overview</strong>
+                            </div>
+                            <div class="detail-film-description-content">
+                                <%-phim.content%>
+                            </div>
+                        </div>
+                        <div class="detail-film-element">
+                            <div class="element-left">
+                                <div class="element-item">
+                                    <strong class="item-">Released:</strong>
+                                    <%=phim.filmyear%>
+                                </div>
+                                <div class="element-item">
+                                    <strong>Genres:</strong>
+
+                                    <% cateTL.forEach((c, index)=> {
+                                        let permalinkCate = `/${c.fullslug}/`;
+                                        %><a href="<%=permalinkCate%>" class="item" title="<%=c.title%>">
+                                            <%=c.title%>
+                                        </a>
+                                        <% if(index < cateTL.length-1){ %><span>, </span>
+                                            <% } }); %>
+                                </div>
+                                <div class="element-item">
+                                    <strong>Casts:</strong>
+                                    <%
+                                        cateDV.forEach((c, index) => {
+                                            let permalinkCate = `/${c.fullslug}/`;                                                                                         
+                                                %><a href="<%=permalinkCate%>" class="item" title="<%=c.title%>"><%=c.title%></a><%
+                                            if(index < cateDV.length-1){
+                                                %><span>, </span><%
+                                            }
+                                        });
+                                    %>
+                                    <%= (cateDV.length<=0) ? phim.actor_old : "" %>
+                                </div>
+                            </div>
+                            <div class="element-right">
+                                <div class="element-item">
+                                    <strong class="item-">Duration:</strong>
+                                    <%=phim.filmtime%>
+                                </div>
+                                <div class="element-item">
+                                    <strong>Country:</strong>
+                                    <%
+                                        cateQG.forEach((c, index) => {
+                                            let permalinkCate = `/${c.fullslug}/`;                                                                                         
+                                                %><a href="<%=permalinkCate%>" class="item" title="<%=c.title%>"><%=c.title%></a><%
+                                            if(index < cateQG.length-1){
+                                                %><span>, </span><%
+                                            }
+                                        });
+                                    %>
+                                </div>
+                                <div class="element-item">
+                                    <strong>Director:</strong>
+                                    <%
+                                        cateDD.forEach((c, index) => {
+                                            let permalinkCate = `/${c.fullslug}/`;                                                                                         
+                                                %><a href="<%=permalinkCate%>" class="item" title="<%=c.title%>"><%=c.title%></a><%
+                                            if(index < cateDD.length-1){
+                                                %><span>, </span><%
+                                            }
+                                        });
+                                    %>
+                                    <%= (cateDD.length<=0) ? phim.director_old : "" %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail-film-tags">
+
+                            <%
+                                cateTags.forEach((c, index) => {
+                                    let permalinkCate = `/${c.fullslug}/`;                                                                                         
+                                        %><div class="tag"><a href="<%=permalinkCate%>" class="item" title="<%=c.title%>"><%=c.title%></a></div>div><%
+                                    if(index < cateTags.length-1){
+                                        %><span>, </span><%
+                                    }
+                                });
+                            %>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main wrapper    -->
+            <div id="main-wrapper">
+                <div class="container">
+                    <%- include('./include/film-loop', { title: 'You may also like', phims: filmRelated}) %>
+
+                </div>
+            </div>
+        </div>
+      <%- include('./include/footer') %>
+  </body>

@@ -1,0 +1,44 @@
+{
+    "server": {
+        "port": 3001,
+        "domain": "http://localhost:3001",
+        "dashboard": "admin",
+        "secret": "zpm-secret-keyznfe"
+    },
+    "database": {
+        "host": "localhost",
+        "database": "zphimmoi_node",
+        "username": "root",
+        "password": "",
+        "dialect": "mysql",
+        "logging": false,
+        "force": false,
+        "alter": false,
+        "pool": {
+            "max": 50,
+            "min": 0,
+            "acquire": 30000,
+            "idle": 10000
+        },
+        "table": {
+            "prefix": "cms_",
+            "engine": "InnoDB"
+        }
+    },    
+    "media": {
+        "widths": [165, 350, 680, 1000],
+        "filesize": 40,
+        "optimize": {
+            "quality": 100,
+            "compressionlevel": 9
+        },
+        "filetypes": ["image/png", "image/jpeg", "image/webp"]
+    },
+    "interactive": {
+        "viewtime": 5
+    },
+    "tracer": {
+        "maxerrloginnumber": 5,
+        "blockerrlogintime": 1
+    }
+}

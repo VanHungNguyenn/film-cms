@@ -1,0 +1,85 @@
+<%- include("./include/header") %>
+    <!--Main content-->
+    <div class="site-body">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0">
+                <li class="breadcrumb-item"><a href="/<%=dashboard%>"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="/<%=dashboard%>/post/<%=type.id%>"><%=type.name%></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Thêm mới</li>
+            </ol>
+        </nav>
+        <div class="container-fluid">
+            <form id="post-form" action="/<%=dashboard%>/post/<%=posttype%>/add" method="post">
+                <div class="row sortable-wrapper" id="PostAddScreen">
+                    <!-- Left Side -->
+                    <div class="col-lg-9 col-md-12">                        
+                        <div id="ls-sortable" class="sortable">
+                            <!-- Box nội dung -->
+                            <div class="accordion accordion-ui ui-state-default mb-3" id="accordionMainPost">
+                                <div class="card">
+                                    <div class="card-header" id="headingMainPost">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseMainPost" aria-expanded="true" aria-controls="collapseMainPost">
+                                                Nội dung
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseMainPost" class="collapse show" aria-labelledby="headingMainPost" data-parent="#accordionMainPost">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="title">Tiêu đề</label>
+                                                <input type="text" class="form-control create-slug" name="title" placeholder="Tiêu đề">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="slug">Đường dẫn</label>
+                                                <input type="text" class="form-control appear-slug" name="slug" placeholder="Đường dẫn">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description">Diễn giải</label>
+                                                <textarea class="form-control" name="description" placeholder="Diễn giải"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="content">Nội dung</label>
+                                                <textarea class="form-control tinymce" name="content" placeholder="Nội dung"></textarea>
+                                            </div>
+                                            <!-- <div class="row mt-2 mb-3">
+                                                <div class="col">
+                                                    <div class="checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="islikemain">
+                                                        <label class="form-check-label" for="islikemain">Hỗ trợ tất cả ngôn ngữ</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2 mb-3">
+                                                <div class="col">
+                                                    <div class="checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="notenglish">
+                                                        <label class="form-check-label" for="notenglish">Không dùng ngôn ngữ chính</label>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <%- include('./templates/box-post-seo-add') %>                            
+                        </div>
+                    </div>
+                    <!-- Right Side -->
+                    <div class="col-lg-3 col-md-12">
+                        <div id="rs-sortable" class="sortable stick-when-scroll">
+                            <%- include('./templates/box-post-publish-add') %>
+                            <%- include("./templates/box-post-categories")%>
+                            <%- include('./templates/box-post-thumbnail-add') %>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>var curPostType = "<%=posttype%>";</script>
+    <script src="/<%=dashboard%>/assets/libs/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="/<%=dashboard%>/assets/libs/tinymce/tinymce.min.js"></script>
+    <script src="/<%=dashboard%>/assets/js/tiny.js"></script>
+    <script src="/<%=dashboard%>/assets/js/userui.js"></script>    
+    <%- include("./include/footer") %>

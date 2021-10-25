@@ -1,0 +1,11 @@
+.film-view {
+    height: 400px
+}
+@media only screen and (max-width: 768px) {
+    .film-view {
+        height: 250px
+    }
+    #film-content-wrapper {
+        margin-top: 30px !important;
+    }
+}

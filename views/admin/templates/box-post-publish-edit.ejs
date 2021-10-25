@@ -1,0 +1,72 @@
+<!-- Box Xuất bản -->
+<div class="accordion accordion-ui ui-state-default mb-3" id="accordionPostPublished">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsePostPublished" aria-expanded="true" aria-controls="collapsePostPublished">
+                    Xuất bản
+                </button>
+            </h2>
+        </div>
+        <div id="collapsePostPublished" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionPostPublished">
+            <div class="card-body">
+                <div class="form-group">
+                    <span>Trạng thái</span>
+                    <select name="poststatus">
+                    <option value="pendding" <%if(post.poststatus=='pendding'){ %>selected<%}%>>Chờ</option>
+                    <option value="published" <%if(post.poststatus=='published'){ %>selected<%}%>>Xuất bản</option>
+                    <option value="trash" <%if(post.poststatus=='trash'){ %>selected<%}%>>Thùng rác</option>
+                </select>
+                </div>
+                <div class="form-group" id="timepublicform">
+                    <div>
+                        <input class="maindatefield" type="hidden" name="publishedat" value="<%=post.publishedat%>">
+                        <span id="timepublic">Xuất bản <strong>ngay</strong></span>
+                        <a href="javascript:void(0);" id="btn-timepublic" class="btn btn-outline-primary btn-sm">Thay đổi</a>
+                    </div>
+                    <div id="timepublicwrap">
+                        <input type="text" name="tpf-day" placeholder="dd">
+                        <select name="tpf-month">
+                            <option value="1">01 - Một</option>
+                            <option value="2">02 - Hai</option>
+                            <option value="3">03 - Ba</option>
+                            <option value="4">04 - Bốn</option>
+                            <option value="5">05 - Năm</option>
+                            <option value="6">06 - Sáu</option>
+                            <option value="7">07 - Bảy</option>
+                            <option value="8">08 - Tám</option>
+                            <option value="9">09 - Chín</option>
+                            <option value="10">10 - Mười</option>
+                            <option value="11">11 - Mười một</option>
+                            <option value="12">12 - Mười hai</option>
+                        </select>
+                        <input type="text" name="tpf-year" placeholder="yyyy">
+                        <input type="text" name="tpf-hour" placeholder="HH">
+                        <span>:</span>
+                        <input type="text" name="tpf-minute" placeholder="mm">
+                        <p>
+                            <a href="javascript:void(0);" id="btn-tpf-apply" class="btn btn-primary btn-sm">Chọn</a>
+                            <a href="javascript:void(0);" id="btn-tpf-cancel" class="btn btn-outline-dark btn-sm">Hủy</a>
+                        </p>
+                    </div>
+                </div>                                           
+                <div class="form-group">                                                
+                    <%
+                        var html = (post.posttype == "post-page") ? "/" : "/";
+                    %>
+                    <%if(post.poststatus=='published'){%>
+                        <a href="/phim/<%=post.slug%>-<%=post.id%>/" target="_blank" class="btn btn-sm btn-outline-primary">Xem</a>
+                    <%}else{%>
+                        <a href="/?pid=<%=post.id%>&preview=1" target="_blank" class="btn btn-sm btn-outline-primary">Xem trước</a>
+                    <%}%>                                                
+                    <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger btn-reset-screenui float-right">Giao diện mặc định</a>
+                </div>
+                <div class="text-right">
+                    <input type="hidden" name="modifiedat" id="modifiedat" value="<%=post.modifiedat%>">
+                    <button class="btn btn-primary" id="btn-submit-editmodified">Cập nhật</button>
+                    <button class="btn btn-primary">Chỉ lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

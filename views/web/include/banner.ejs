@@ -1,0 +1,105 @@
+<% 
+   var phims = (phims) ? phims : [];
+%>
+
+<!-- Banner -->
+<div id="top-slider" class="with-social">
+	<div class="swiper mySwiper">
+		<div class="swiper-wrapper">
+			<% phims.forEach(phim => { %>
+				<%- include('slider', {phim: phim}) %>
+			<% }) %> 
+		</div>
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<div class="top-slider-basic-film">
+		<div class="basic-film-list">
+			<div class="basic-item">
+				<div class="basic-item_film-poster">
+					<a href="#"><img src="./assets/images/top-film-1.jpg" alt="" /></a>
+				</div>
+				<div class="basic-item_film-detail">
+					<div class="film-infor">
+						<span class="film-infor-item">
+							<i class="fas fa-star"></i>
+							N/A
+						</span>
+						<span class="film-infor-item"><strong>HD</strong></span>
+						<span class="film-infor-item">2021</span>
+					</div>
+					<h3 class="film-name">
+						<a href="#" title="">Between Forever</a>
+					</h3>
+					<p class="film-desc">A bank teller called Guy realizes he is a background character in an open world video game called Free City that will soon</p>
+					<div class="film-btn">
+						<a href="#" class="btn btn-play">
+							<i class="fas fa-play"></i>
+							Watch now</a
+						>
+					</div>
+				</div>
+			</div>
+			<div class="basic-item">
+				<div class="basic-item_film-poster">
+					<a href="#"><img src="./assets/images/top-film-1.jpg" alt="" /></a>
+				</div>
+				<div class="basic-item_film-detail">
+					<div class="film-infor">
+						<span class="film-infor-item">
+							<i class="fas fa-star"></i>
+							N/A
+						</span>
+						<span class="film-infor-item"><strong>HD</strong></span>
+						<span class="film-infor-item">2021</span>
+					</div>
+					<h3 class="film-name">
+						<a href="#" title="">Between Forever</a>
+					</h3>
+					<p class="film-desc">A bank teller called Guy realizes he is a background character in an open world video game called Free City that will soon</p>
+					<div class="film-btn">
+						<a href="#" class="btn btn-play">
+							<i class="fas fa-play"></i>
+							Watch now</a
+						>
+					</div>
+				</div>
+			</div>
+			<div class="basic-item">
+				<div class="basic-item_film-poster">
+					<a href="#"><img src="./assets/images/top-film-1.jpg" alt="" /></a>
+				</div>
+				<div class="basic-item_film-detail">
+					<div class="film-infor">
+						<span class="film-infor-item">
+							<i class="fas fa-star"></i>
+							N/A
+						</span>
+						<span class="film-infor-item"><strong>HD</strong></span>
+						<span class="film-infor-item">2021</span>
+					</div>
+					<h3 class="film-name">
+						<a href="#" title="">Between Forever</a>
+					</h3>
+					<p class="film-desc">A bank teller called Guy realizes he is a background character in an open world video game called Free City that will soon</p>
+					<div class="film-btn">
+						<a href="#" class="btn btn-play">
+							<i class="fas fa-play"></i>
+							Watch now</a
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="top-slider-social">
+		<div class="top-slider-social-header">Share with</div>
+		<div class="top-slider-social-box">
+			<a href=""><i class="fab fa-facebook"></i></a>
+			<a href=""><i class="fab fa-twitter"></i></a>
+			<a href=""><i class="fab fa-telegram"></i></a>
+			<a href=""><i class="fas fa-plus-circle"></i></a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+1. type
+2. option
+3. sitefeatures
+4. menu
+5. rolefeatures
+6. user
+7. language
+8. feedback
+9. media
+10. page
+11. blog
+12. film
+13. category
+14. config
+15. controller
+16. docs
+17. libs
+18. locales
+19. middleware
+20. models
+21. node_modules
+22. public
+23. routes
+24. static
+25. uploads
+26. views
+27. app.js
+28. Xóa table thừa trong database
+
+- Code Admin - DONE
+- Đỗ Data -> Làm data
+- Code Fontend

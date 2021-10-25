@@ -1,0 +1,23 @@
+
+<% 
+   var title = (title) ? title : "";
+   var phims = (phims) ? phims : [];
+   var cssClass=(cssClass) ? cssClass : "";
+%>
+ <% if (phims.length>0) {
+%>
+<section class="section-film">
+   <h2 class="heading">
+      <%=title%>
+   </h2>
+   <div class="film-list-grid">
+      <% phims.forEach(phim => {
+         %>
+         <%- include('film', {phim: phim}) %>
+         <%
+     }) %> 
+   </div>
+</section>
+   <%
+    
+  } %> 

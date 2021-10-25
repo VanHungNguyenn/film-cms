@@ -1,0 +1,17 @@
+<% if(Object.keys(type.catetype).length > 0 && Object.keys(categories).length > 0){%>
+    <% type.catetype.forEach(catetype => { %>
+        <% if(catetype.allowsearch) { %>
+            <select class="item-filter">
+                <option value="category;<%=catetype.id%>;%"><%=catetype.name%></option>
+                <% categories.forEach(item => { %>
+                    <% if(catetype.id == item.catetype){ %>
+                    <option value="category;<%=item.catetype%>;<%=item.id%>"><%=item.title%></option>
+                    <% item.Childrens.forEach(child => { %>
+                        <option value="category;<%=item.catetype%>;<%=child.id%>">&rarr; <%=child.title%></option>
+                    <% }) %>
+                    <%}%>
+                <% }) %>
+            </select>
+        <% } %>
+    <% }) %>
+<%}%>

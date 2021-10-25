@@ -1,0 +1,191 @@
+<%-include('header')%>
+<%
+let proxy = JSON.parse(data.Film.proxy);
+let thumb = data.Film.thumb;
+if(proxy.thumb) thumb = proxy.thumb;
+else thumb = `/image/thumb/${data.Film.id}/`;
+thumb = data.Film.thumb;
+%>
+<!-- Start: JS Tag -->
+<link rel="stylesheet" href="/assets/theme/styles/player.css">
+<script src="/assets/theme/js/jquery.raty.js" type="text/javascript"></script>
+<script src="/assets/theme/js/public.film.js?_jv=1.168" type="text/javascript"></script>
+<script src="/assets/theme/js/trailer-popup.js?_jv=1.05" type="text/javascript"></script>
+<script src="/assets/theme/js/film-info.js?_jv=1.1698" type="text/javascript"></script>
+<script src="/assets/theme/js/trailer.js" type="text/javascript"></script>
+<!-- End: JS Tag -->
+    <!-- Main content -->
+	<ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+		<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+            <a itemprop="item" title="Phim Mới" href="/">
+                <span itemprop="name">Phim Mới</span>
+            </a>
+        </li>
+        <% if(data.Film.type) { %>
+            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                <a itemprop="item" title="<%=getType(data.Film.type)%>" href="/danh-sach/?type=<%=data.Film.type%>">
+                    <span itemprop="name"><%=getType(data.Film.type)%></span>
+                </a>
+            </li>
+        <% } %>
+        <% data.Film.Categories.forEach(item => { %>
+            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                <a itemprop="item" title="<%=item.name%>" href="/danh-sach/?category=<%=item.slug%>">
+                    <span itemprop="name"><%=item.name%></span>
+                </a>
+            </li>
+        <% }) %>
+		<li class="active"><%=data.Film.name%></li>
+	</ol>
+	<div class="row">
+		<!-- slider -->
+		<div class="col-lg-8">
+			<script type="text/javascript">
+			filmInfo.filmId = parseInt('<%=data.Film.id%>');
+			filmInfo.title = '<%=data.Film.name%>';
+			filmInfo.url = '/phim/<%=data.Film.slug%>-<%=data.Film.id%>/';
+			filmInfo.fullUrl = '<%=domain%>/phim/<%=data.Film.slug%>-<%=data.Film.id%>/';
+			filmInfo.fbUrl = '<%=domain%>/phim/<%=data.Film.slug%>-<%=data.Film.id%>/';
+			filmInfo.trailerUrl = '<%=data.Film.trailer%>';
+			filmInfo.previewUrl = '<%=thumb%>';
+			</script>
+			<div class="block-wrapper page-single">
+				<!-- Thông tin phim -->
+				<div class="movie-info">
+					<div class="block-movie-info trailer-info-box">
+						<div class="row">
+							<div class="col-9 movie-detail">
+								<h1 class="movie-title">
+                                    <span class="title-1">
+                                        <a class="title-1" href="/phim/<%=data.Film.slug%>-<%=data.Film.id%>/"><%=data.Film.name%></a>
+                                    </span>
+                                    <span class="title-2"><%=data.Film.nameEn%></span>
+                                    <span class="title-year"> (<%=data.Film.year%>)</span>
+                                </h1>
+								<div class="film-description-box">
+                                    <p class="film-description-short">
+                                        <%-cutString(data.Film.content, 200)%> [<a href="/phim/<%=data.Film.slug%>-<%=data.Film.id%>/" title="<%=data.Film.name%> - <%=data.Film.nameEn%>">Xem thêm</a>]
+                                    </p>
+                                    <div class="clear"></div>
+                                </div>
+							</div>
+							<div class="col-3 movie-image">
+								<div class="movie-l-img"><img alt="<%=data.Film.name%> - <%=data.Film.nameEn%>" src="<%=thumb%>">
+									<h2 class="hidden">Xem phim</h2>
+									<ul class="btn-block">
+                                        <div class="movie-watch-link-box">
+                                            <a class="movie-watch-link" href="/phim/<%=data.Film.slug%>-<%=data.Film.id%>/" title="Xem phim <%=data.Film.name%> - <%=data.Film.nameEn%>">Xem phim</a>
+                                        </div>
+                                    </ul>
+								</div>
+								<div class="action" style="display:none">
+									<div class="btn-group">
+										<button type="button" class="btn btn-a dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+										<ul class="dropdown-menu" role="menu"></ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="block-wrapper page-single block-note" style="width:100%;margin-bottom:10px;">Nếu không xem được phim hoặc không có sub vui lòng tìm kiếm phim khác cùng tên, chúng tôi sẽ fix nhanh nhất có thể!</div>
+					<% if(data.note) { %>
+                        <div class="block-wrapper page-single block-note" style="width:100%;margin-bottom:10px;"><%=data.note%></div>
+                    <% } %>
+                    <article class="block-movie-content" id="film-content-wrapper" style="text-align: center;margin-top: 10px;">
+                        <a href="https://lixi88vip.com/reg.shtml?id=5075660" target="_blank" style="margin-bottom: 10px">
+                            <img src="/assets/images/customer/lixi-banner-210119-320x100.gif">
+                        </a>
+						<div class="film-view" style="margin-top: 10px;margin-bottom: 10px;">
+							<% if(data.Srts.length > 0) { %>
+								<iframe src="<%-data.url[0].link.replace(/beststream.io/gm, 'player.zphimmoi.com')%>?autoplay=true&sub=https://sub.zphimmoi.com<%=data.Srts[0].pathFile%>" height="100%" width="100%" scrolling="no" frameborder="0" allowfullscreen></iframe>
+							<% } else { %>
+								<iframe src="<%-data.url[0].link.replace(/beststream.io/gm, 'player.zphimmoi.com')%>?autoplay=true" height="100%" width="100%" scrolling="no" frameborder="0" allowfullscreen></iframe>
+							<% } %>
+						</div>
+                        <ins id="ccadnet_281_380" style="display: none;">
+                            <script>
+                                (function(w, d, a) {
+                                    if (w.ccnads) {
+                                        return ccnads(a);
+                                    }
+                                    if (w.ccnAdsQueue) {
+                                        return w.ccnAdsQueue.push(a);
+                                    }
+                                    w.ccnAdsQueue = [];
+                                    w.ccnAdsQueue.push(a);
+                                    var s = d.createElement('script');
+                                    s.async = true;
+                                    s.src = 'https://cdn2.cache.vn/banners/sspAnetTest/cc_ssp_new.js';
+                                    d.head.appendChild(s);
+                                })(window, document, {
+                                    id: 'ccadnet_281_380',
+                                    fallback: function() {}
+                                });
+                            </script>
+                        </ins>
+					</article>
+                    <div class="list-server">
+                        <%
+                        let listEpisode = groupByArray(data.Film.Episodes, "ServerId");
+                        for(const index in listEpisode) {
+                            let server = listEpisode[index];
+                            %>
+                            <div class="server clearfix">
+                                <h3 class="server-name">Server <%=server[0].Server.name%></h3>
+                                <ul class="list-episode">
+                                    <%
+                                    let episodes = sortEpisode(server);
+                                    for(const item of episodes) {
+                                        let epname = item.name;
+                                        if(epname === 0) epname = "Full";
+                                        else if(epname > 0 && epname < 10) epname = `0${epname}`;
+                                        %>
+                                        <li class="episode">
+                                            <a title="Tập <%=epname%>" class="btn-episode btn3d black <% if(item.id === data.id) { %>active<%} %>" href="/phim/<%=data.Film.slug%>-<%=data.Film.id%>/tap-<%=convertSlug(epname)%>-<%=item.id%>.html"><%=epname%></a>
+                                        </li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                        <% } %>
+                    </div>
+					<div class="block-tags">
+						<h3 class="movie-detail-h3">Từ khóa:</h3>
+						<ul class="tag-list">
+                            <%
+                            let tags = data.Film.keywords.split(",");
+                            for(const item of tags) { %>
+                                <li class="tag-item">
+                                    <a class="tag-link" href="/danh-sach/?tags=<%=item.trim()%>" title="<%=item.trim()%>"><%=item.trim()%></a>
+                                </li>
+                            <% } %>
+						</ul>
+					</div>
+				</div>
+				<!-- / Thông tin phim -->
+				<div style="margin-top:10px; margin-left: auto; margin-right: auto;margin-bottom:0;width:336px;overflow-x:hidden;">
+					
+				</div>
+				<div class="clear"></div>
+			</div>
+            <div class="ad-mobile" style="margin-top: 20px">
+                <img src="/assets/images/banner/mobile2.svg">
+            </div>
+			<!-- / Top comment PC -->
+            <div class="block-wrapper page-single block-comments">
+                <div class="fb-comments" data-href="<%=domain%>/phim/<%=data.Film.slug%>-<%=data.Film.id%>/" data-order-by="reverse_time" data-width="650" style="max-height: 30px;"></div>
+            </div>            
+			<div class="clear"></div>
+            <div class="ad-mobile" style="margin-top: 20px">
+                <img src="/assets/images/banner/mobile3.svg">
+            </div>
+			<div class="movie-list-index related-box">
+				<h2 class="header-list-index"><span class="title-list-index">Có thể bạn cũng muốn xem</span></h2>
+				<ul class="list-movie">
+					<%-html.htmlList(randomFilm)%>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<!-- Sidebar -->
+		<%-include('sidebar')%>
+<%-include('footer')%>

@@ -1,0 +1,45 @@
+<%
+    var phim = (phim) ? phim : {};
+    var title = phim.title || phim.filmname || "";
+    var tenPhim2 = phim.filmname || "";
+    var duration = phim.filmtime || "Chưa rõ";
+    var filmyear = phim.filmyear || "N/A";
+    var imdb = phim.imdb || "N/A";
+    var quatity = phim.quatity || "N/A"; // Chất lượng phim (HD, CAM, SD)
+    var permalink = `/movie/${phim.slug}-${phim.id}/`;
+    var thumbPhim = (phim.thumb) ? phim.thumb : {};
+    var thumbnail = thumbPhim.url || phim.thumb_old || "/assets/imgs/no-image.gif";
+    var banner = phim.banner_old;
+%>
+
+
+<div class="swiper-slide">
+    <div class="slide-images-background">   
+        <a href="<%=permalink%>">
+            <img src="<%=banner%> " alt="">
+        </a>
+    </div>
+   
+
+    <div class="slide-caption">
+        <a href="<%=permalink%>" class="slide-film-poster">
+            <img src="<%=thumbnail%>" alt="<%=title%>" />
+        </a>
+        <div class="slide-button-play">
+            <i class="far fa-play-circle"></i>
+        </div>
+        <div class="slide-infor">
+            <div class="slide-film-title"><%=title%></div>
+            <div class="slide-film-detail">
+                <span class="slide-infor-item">
+                    <i class="fas fa-star"></i>
+                    <%=imdb%>
+                </span>
+                <span class="slide-film-infor-item"><strong>HD</strong></span>
+            </div>
+            <div class="slide-film-desc">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi sunt cum porro eaque tenetur exercitationem enim quidem sint vero praesentium?
+            </div>
+        </div>
+    </div>
+</div>

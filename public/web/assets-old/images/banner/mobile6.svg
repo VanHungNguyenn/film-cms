@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="320" height="100" viewBox="0 0 320 100">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 25px;
+        fill: #7c787c;
+        text-anchor: middle;
+        font-family: "VNtimes new roman";
+      }
+    </style>
+  </defs>
+  <image id="Background" width="320" height="100" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAABkCAYAAAD32uk+AAABY0lEQVR4nO3UAQ0AIAzAsIOi+zcHQtZaWLKzu28Agq7oQJUBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCGQZIJBlgECWAQJZBghkGSCQZYBAlgECWQYIZBkgkGWAQJYBAlkGCDTNzAeHcwJXoKygZAAAAABJRU5ErkJggg=="/>
+  <text id="_320_x_100" data-name="320 x 100" class="cls-1" x="160" y="71"><tspan x="160">320 x 100</tspan></text>
+  <text id="Mobile_6" data-name="Mobile 6" class="cls-1" x="160" y="45"><tspan x="160">Mobile 6</tspan></text>
+</svg>

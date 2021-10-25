@@ -1,0 +1,21 @@
+<%
+    var homeURL = (page.curLang.ismain) ? domain : `${domain}/${page.curLang.id}`;
+    var category = (page.pageContent) ? page.pageContent : {};
+    var permalink = `${homeURL}/${category.slug}/`;
+    var films = (page.films) ? page.films : {};
+%>
+
+
+
+<%- include('./include/header.ejs', {pageClass: 'homePage'}) %>
+
+<body>
+  <!-- Header -->
+  <%- include('./include/navi') %>
+    <div id="main-wrapper">
+      <div class="container">
+        <%- include("./include/filter-film", {phims: films.rows || [], fileName: "film", category: category, permalink: permalink}) %>
+        <%- include("./include/sidebar") %>
+      </div>
+    </div>
+<%- include('./include/footer') %>

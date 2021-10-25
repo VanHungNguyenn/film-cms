@@ -1,0 +1,37 @@
+<!-- Modal Upload Image -->
+<div class="modal fade" id="editorImgModal" tabindex="-1" aria-labelledby="editorImgModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editorImgModalLabel">Thêm ảnh</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#tabs-upload">Upload files</a></li>
+                        <li><a href="#tabs-media">Media</a></li>
+                        <li><a href="#tabs-url">From Url</a></li>
+                    </ul>
+                    <div id="tabs-upload">
+
+                    </div>
+                    <div id="tabs-media" data-offset="0">
+                        <ol id="selectableImgList"></ol>
+                    </div>
+                    <div id="tabs-url">
+                        <div class="form-group">
+                            <label for="imgUrl">Đường dẫn ảnh</label>
+                            <input class="form-control" type="text" name="imgUrl" placeholder="Đường dẫn ảnh">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnEditorImg" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+<%-include('header')%>
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" title="Phim Mới" href="/" itemprop="url">
+                <span itemprop="name">Phim Mới</span>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" title="Phim hành động" href="<%=site.url%>" itemprop="url">
+                <span itemprop="name"><%=site.name%></span>
+            </a>
+        </li>
+        <li class="active">Trang <%=data.page%></li>
+    </ol>
+    <script type="text/javascript" src="js/vtlai/movie/public/filter.js?"></script>
+    <div class="list-movie-filter" style="margin-bottom: 10px;">
+        <div class="list-movie-filter-main">
+            <form id="form-filter" class="form-inline" method="GET" action="/danh-sach/">
+                <div class="list-movie-filter-item">
+                    <label for="filter-sort">Sắp xếp</label>
+                    <% if(query.sort) { %>
+                        <select class="form-control" id="filter-sort" name="sort">
+                            <option value="id" <% if(query.sort == "id") { %>selected<%} %>>Phim mới nhất</option>
+                            <option value="updatedAt" <% if(query.sort == "updatedAt") { %>selected<%} %>>Thời gian cập nhật</option>
+                            <option value="createdAt" <% if(query.sort == "createdAt") { %>selected<%} %>>Thời gian đăng</option>
+                            <option value="year" <% if(query.sort == "year") { %>selected<%} %>>Năm sản xuất</option>
+                            <option value="imdb" <% if(query.sort == "imdb") { %>selected<%} %>>Điểm imdb</option>
+                            <option value="viewed" <% if(query.sort == "viewed") { %>selected<%} %>>Lượt xem</option>
+                        </select>
+                    <% } else { %>
+                        <select class="form-control" id="filter-sort" name="sort">
+                            <option value="id">Phim mới nhất</option>
+                            <option value="updatedAt">Thời gian cập nhật</option>
+                            <option value="createdAt">Thời gian đăng</option>
+                            <option value="year">Năm sản xuất</option>
+                            <option value="imdb">Điểm imdb</option>
+                            <option value="viewed">Lượt xem</option>
+                        </select>
+                    <% } %>
+                </div>
+                <div class="list-movie-filter-item">
+                    <label for="filter-eptype">Loại phim</label>
+                    <% if(query.type) { %>
+                        <select class="form-control" id="filter-eptype" name="type">
+                            <option value="">Tất cả</option>
+                            <option value="movies" <% if(query.type == "movies") { %>selected<%} %>>Phim lẻ</option>
+                            <option value="series" <% if(query.type == "series") { %>selected<%} %>>Phim bộ</option>
+                            <option value="cinema" <% if(query.type == "cinema") { %>selected<%} %>>Phim chiếu rạp</option>
+                            <option value="recommended" <% if(query.type == "recommended") { %>selected<%} %>>Phim đề cử</option>
+                            <option value="anime" <% if(query.type == "anime") { %>selected<%} %>>Anime</option>
+                            <option value="phim-hoat-hinh" <% if(query.type == "phim-hoat-hinh") { %>selected<%} %>>Phim Hoạt Hình</option>
+                        </select>
+                    <% } else { %>
+                        <select class="form-control" id="filter-eptype" name="type">
+                            <option value="">Tất cả</option>
+                            <option value="movies">Phim lẻ</option>
+                            <option value="series">Phim bộ</option>
+                            <option value="cinema">Phim chiếu rạp</option>
+                            <option value="recommended">Phim đề cử</option>
+                            <option value="anime">Anime</option>
+                            <option value="phim-hoat-hinh">Phim Hoạt Hình</option>
+                        </select>
+                    <% } %>
+                </div>
+                <div class="list-movie-filter-item">
+                    <label for="filter-category">Thể loại</label>
+                    <% if(query.category) { %>
+                        <select id="filter-category" name="category" class="form-control">
+                            <option value="">Tất cả</option>
+                            <% defaultValue.category.forEach(item => { %>
+                                <option value="<%=item.slug%>" <% if(query.category == item.slug) { %>selected<%} %>><%=item.name%></option>
+                            <% }) %>
+                        </select>
+                    <% } else { %>
+                        <select id="filter-category" name="category" class="form-control">
+                            <option value="">Tất cả</option>
+                            <% defaultValue.category.forEach(item => { %>
+                                <option value="<%=item.slug%>"><%=item.name%></option>
+                            <% }) %>
+                        </select>
+                    <% } %>
+                </div>
+                <div class="list-movie-filter-item">
+                    <label for="filter-country">Quốc gia</label>
+                    <% if(query.sort) { %>
+                        <select class="form-control" id="filter-country" name="country">
+                            <option value="">Tất cả</option>
+                            <% defaultValue.country.forEach(item => { %>
+                                <option value="<%=item.slug%>" <% if(query.country == item.slug) { %>selected<%} %>><%=item.name%></option>
+                            <% }) %>
+                        </select>
+                    <% } else { %>
+                        <select class="form-control" id="filter-country" name="country">
+                            <option value="">Tất cả</option>
+                            <% defaultValue.country.forEach(item => { %>
+                                <option value="<%=item.slug%>"><%=item.name%></option>
+                            <% }) %>
+                        </select>
+                    <% } %>
+                </div>
+                <div class="list-movie-filter-item">
+                    <label for="filter-year">Năm phát hành</label>
+                    <% if(query.sort) { %>
+                        <select id="filter-year" name="year" class="form-control">
+                            <option value="">Tất cả</option>
+                            <%
+                            let year = 2021;
+                            for(let i=0;i<12;i++) {
+                                let y = year-1;
+                                %>
+                                <option value="<%=y%>" <% if(query.year == y) { %>selected<%} %>><%=y%></option>
+                            <% } %>
+                        </select>
+                    <% } else { %>
+                        <select id="filter-year" name="year" class="form-control">
+                            <option value="">Tất cả</option>
+                            <%
+                            let year = 2021;
+                            for(let i=0;i<12;i++) { %>
+                                <option value="<%=(year-i)%>"><%=(year-i)%></option>
+                            <% } %>
+                        </select>
+                    <% } %>
+                </div>
+                <button type="submit" id="btn-movie-filter" class="btn btn-red btn-filter-movie">
+                    <span>Duyệt phim</span>
+                </button>
+                <div class="clear"></div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="movie-list-index">
+                <h1 class="header-list-index">
+                    <span class="title-list-index"><%=site.name%></span>
+                </h1>
+                <ul class="list-movie">
+                    <%-html.htmlList(data.data)%>
+                </ul>
+            </div>
+            <div class="clear"></div>
+            <ul class="pagination pagination-lg">
+                <%-getAllPage({
+                    limit: data.limit,
+                    page: data.page,
+                    total: data.total,
+                    url: site.url
+                })%>
+            </ul>
+        </div>
+        <%-include('sidebar')%>
+<%-include('footer')%>

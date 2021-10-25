@@ -1,0 +1,44 @@
+<%- include("./include/header") %>
+    <!--Main content-->
+    <div class="site-body">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0">
+                <li class="breadcrumb-item">
+                    <a href="/<%=dashboard%>">
+                        <i class="fas fa-home"></i> Trang chủ
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/<%=dashboard%>/media">Hình ảnh</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Upload mới</li>
+            </ol>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="um-wrapper">
+                                <input type="file" name="file" multiple="multiple">
+                                <div class="um-area">
+                                    <div class="um-title">
+                                        <p>Kéo thả ảnh vào đây</p>
+                                        <p>hoặc</p>
+                                        <button>Chọn ảnh</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 pb-3">
+                                <div>Kích thước tối đa: <strong>10Mb</strong></div>
+                                <div>Loại ảnh hỗ trợ: <strong>jpg</strong>, <strong>png</strong></div>
+                            </div>
+                            <div id="um-results" class="um-results"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/<%=dashboard%>/assets/libs/uploadmedia/uploadmedia.js"></script>
+    <%- include("./include/footer") %>

@@ -1,0 +1,58 @@
+<%
+    var homeURL = (page.curLang.ismain) ? domain : `${domain}/${page.curLang.id}`;
+    var category = (page.pageContent) ? page.pageContent : {};
+    var permalink = `${homeURL}/${category.slug}/`;
+    permalink = (page.curURL) ? page.curURL : permalink;
+    var films = (page.films) ? page.films : {};
+%>
+<%- include('./include/header.ejs', {pageClass: 'singlePage'}) %>
+<main id="pBody">
+    <div class="container">
+        <!-- Breadcumbs -->
+        <div class="breadcumb">
+            <a href="/" class="item" title="Trang chủ">Phim Mới</a>            
+            <span class="item"><%=category.title%></span>
+        </div>
+        <!-- Sort & Filter -->
+        <%- include("./include/box-filter") %>
+        <div class="w-main mb-10">
+            <!-- Main content -->
+            <div class="col col23">                        
+                <!-- Phim đề cử mới -->
+                <section class="secBox">
+                    <div class="sbHeader sbhUnderline">
+                        <h2 class="text"><%=category.title%></h2>
+                    </div>
+                    <div class="sbBody">
+                        <!-- List Film -->
+                        <ul class="w w3 mb-10">
+                            <%- include('./include/film-loop', {phims: films.rows || [], fileName: "film"}) %>
+                        </ul>                        
+                        <!-- Pagination -->
+                        <div class="pagination mb-20">
+                            <%
+                                var curPage = films.curPage || 1,
+                                    paginationData = (page.paginationData) ? page.paginationData : {};
+                                if(curPage > 1){
+                                    let permalinkPre = (curPage==2) ? permalink : `${permalink}?page=${curPage-1}`;
+                                    permalinkPre = (paginationData.prevUrl) ? paginationData.prevUrl : permalinkPre;
+                            %>
+                                <a href="<%=permalinkPre%>">← Trang trước</a>
+                            <% } %>
+                            <span class="current"><%=curPage%></span>
+                            <%                                
+                                if(curPage < films.maxPage){
+                                    let permalinkNext = `${permalink}?page=${curPage + 1}`;
+                                    permalinkNext = (paginationData.nextUrl) ? paginationData.nextUrl : permalinkNext;
+                            %>
+                                <a href="<%=permalinkNext%>">Trang kế →</a>
+                            <% } %>
+                        </div>
+                    </div>
+                </section>                        
+            </div>
+            <%- include("./include/sidebar") %>
+        </div>
+    </div>
+</main>
+<%- include('./include/footer.ejs') %>

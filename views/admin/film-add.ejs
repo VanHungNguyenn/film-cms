@@ -1,0 +1,183 @@
+<%- include("./include/header") %>
+    <!--Main content-->
+    <div class="site-body">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0">
+                <li class="breadcrumb-item"><a href="/<%=dashboard%>"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="/<%=dashboard%>/post/<%=type.id%>"><%=type.name%></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Thêm mới</li>
+            </ol>
+        </nav>
+        <div class="container-fluid">
+            <form id="post-form" action="/<%=dashboard%>/post/<%=posttype%>/add" method="post">
+                <div class="row sortable-wrapper" id="PostAddScreen">
+                    <!-- Left Side -->
+                    <div class="col-lg-9 col-md-12">                        
+                        <div id="ls-sortable" class="sortable">
+                            <!-- Box nội dung -->
+                            <div class="accordion accordion-ui ui-state-default mb-3" id="accordionMainPost">
+                                <div class="card">
+                                    <div class="card-header" id="headingMainPost">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseMainPost" aria-expanded="true" aria-controls="collapseMainPost">
+                                                Nội dung
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseMainPost" class="collapse show" aria-labelledby="headingMainPost" data-parent="#accordionMainPost">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="title">Tên phim</label>
+                                                <input type="text" class="form-control create-slug" name="title" placeholder="Tên phim">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="slug">Đường dẫn</label>
+                                                <input type="text" class="form-control appear-slug" name="slug" placeholder="Đường dẫn">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description">Diễn giải</label>
+                                                <textarea class="form-control" name="description" placeholder="Diễn giải"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="content">Nội dung</label>
+                                                <textarea class="form-control tinymce" name="content" placeholder="Nội dung"></textarea>
+                                            </div>
+                                            <!-- <div class="row mt-2 mb-3">
+                                                <div class="col">
+                                                    <div class="checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="islikemain">
+                                                        <label class="form-check-label" for="islikemain">Hỗ trợ tất cả ngôn ngữ</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2 mb-3">
+                                                <div class="col">
+                                                    <div class="checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="notenglish">
+                                                        <label class="form-check-label" for="notenglish">Không dùng ngôn ngữ chính</label>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Box Phim -->
+                            <div class="accordion accordion-ui ui-state-default mb-3" id="accordionPhim">
+                                <div class="card">
+                                    <div class="card-header" id="headingPhim">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsePhim" aria-expanded="true" aria-controls="collapsePhim">
+                                                Thông tin Phim
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapsePhim" class="collapse show" aria-labelledby="headingPhim" data-parent="#accordionPhim">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="filmname">Tên gốc</label>
+                                                <input type="text" class="form-control" name="filmname" placeholder="Tên gốc">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="note">Ghi chú (Note)</label>
+                                                <textarea class="form-control" name="note" placeholder="Ghi chú (Note)"></textarea>
+                                            </div>
+                                            <!-- <div class="form-group">
+                                                <label for="director_old">Đạo diễn</label>
+                                                <textarea class="form-control" name="director_old" placeholder="Đạo diễn"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="actor_old">Diễn viên</label>
+                                                <textarea class="form-control" name="actor_old" placeholder="Diễn viên"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="actor_old">Từ khóa</label>
+                                                <textarea class="form-control" name="keyword_old" placeholder="Từ khóa"></textarea>
+                                            </div> -->
+                                            <div class="row mt-2 mb-3">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="filmtime">Thời lượng</label>
+                                                        <input type="text" class="form-control" name="filmtime" placeholder="Thời lượng">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="filmyear">Năm</label>
+                                                        <input type="text" class="form-control" name="filmyear" placeholder="Năm" maxlength="4">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="imdb">IMDB</label>
+                                                        <input type="text" class="form-control" name="imdb" placeholder="IMDB">
+                                                    </div>
+                                                </div>                                                
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="filmtype">Loại phim</label>
+                                                        <select class="form-control" name="filmtype">
+                                                            <option value="">Trống</option>
+                                                            <option value="phim-le">Phim lẻ</option>
+                                                            <option value="phim-bo">Phim bộ</option>
+                                                            <option value="amine">Amine</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="channelplay">Kênh chiếu</label>
+                                                        <select class="form-control" name="channelplay">
+                                                            <option value="">Trống</option>
+                                                            <option value="cinema">Cinema</option>
+                                                            <option value="netflix">Netflix</option>
+                                                        </select>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                            <div class="row mt-2 mb-3">
+                                                <div class="col">
+                                                    <div class="checkbox mr-5">
+                                                        <input class="form-check-input" type="checkbox" name="slider">
+                                                        <label class="form-check-label" for="slider">Hiển thị ở Slider</label>
+                                                    </div>
+                                                    <div class="checkbox mr-5">
+                                                        <input class="form-check-input" type="checkbox" name="recommanded">
+                                                        <label class="form-check-label" for="recommanded">Hiển thị ở đề xuất</label>
+                                                    </div>
+                                                    <div class="checkbox mr-5">
+                                                        <input class="form-check-input" type="checkbox" name="copyright">
+                                                        <label class="form-check-label" for="copyright">Bản quyền</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="done">
+                                                        <label class="form-check-label" for="done">Đã hoàn thành</label>
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <%- include('./templates/box-post-seo-add') %>
+                        </div>
+                    </div>
+                    <!-- Right Side -->
+                    <div class="col-lg-3 col-md-12">
+                        <div id="rs-sortable" class="sortable stick-when-scroll">
+                            <%- include('./templates/box-post-publish-add') %>
+                            <%- include("./templates/box-post-categories")%>
+                            <%- include('./templates/box-post-thumbnail-add') %>
+                            <%- include('./templates/box-post-icon-add') %>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>var curPostType = "<%=posttype%>";</script>
+    <script src="/<%=dashboard%>/assets/libs/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="/<%=dashboard%>/assets/libs/tinymce/tinymce.min.js"></script>
+    <script src="/<%=dashboard%>/assets/js/tiny.js"></script>
+    <script src="/<%=dashboard%>/assets/js/userui.js"></script>    
+    <%- include("./include/footer") %>

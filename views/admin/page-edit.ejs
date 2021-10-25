@@ -1,0 +1,110 @@
+<%- include("./include/header") %>
+    <!--Main content-->
+    <div class="site-body">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0">
+                <li class="breadcrumb-item"><a href="/<%=dashboard%>"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="/<%=dashboard%>/post/<%=type.id%>"><%=type.name%></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sửa <%=post.title%></li>
+            </ol>
+        </nav>
+        <div class="container-fluid">
+            <form id="post-form-edit" action="/<%=dashboard%>/post/<%=posttype%>/edit/<%=post.id%>" method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <%- include("./templates/box-post-language")%>
+                    </div>
+                </div>
+                <div class="row sortable-wrapper" id="PageEditScreen">
+                    <!-- Left Side -->
+                    <div class="col-lg-9 col-md-12">                        
+                        <div id="ls-sortable" class="sortable">
+                            <!-- Box Nội dung -->
+                            <div class="accordion accordion-ui ui-state-default mb-3" id="accordionMainPost">
+                                <div class="card">
+                                    <div class="card-header" id="headingMainPost">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseMainPost" aria-expanded="true" aria-controls="collapseMainPost">
+                                                Nội dung
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseMainPost" class="collapse show" aria-labelledby="headingMainPost" data-parent="#accordionMainPost">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="title">Tiêu đề</label>
+                                                <input type="hidden" class="form-control" name="id" placeholder="ID" value="<%=post.id%>">
+                                                <input type="text" class="form-control" name="title" placeholder="Tiêu đề" value="<%=post.title%>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="slug">Đường dẫn</label>
+                                                <input type="text" class="form-control" name="slug" id="slug" placeholder="Đường dẫn" value="<%=post.slug%>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description">Diễn giải</label>
+                                                <textarea class="form-control" name="description" placeholder="Diễn giải"><%=post.description%></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="content">Nội dung</label>
+                                                <textarea class="form-control tinymce" name="content" placeholder="Nội dung"><%=post.content%></textarea>
+                                            </div>
+                                            <div class="row mt-2 mb-3">
+                                                <div class="col">
+                                                    <div class="checkbox mr-5">
+                                                        <input class="form-check-input" type="checkbox" name="islikemain" <%if(post.islikemain){ %>checked<%}%>>
+                                                        <label class="form-check-label" for="islikemain">Hỗ trợ tất cả ngôn ngữ</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="nolink" <%if(post.nolink){ %>checked<%}%>>
+                                                        <label class="form-check-label" for="nolink">Bài viết không có URL</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                                                        
+                            <%- include("./templates/box-post-seo-edit") %>
+                            <%- include("./templates/box-logging") %>
+                        </div>
+                    </div>
+                    <!-- Right Side -->
+                    <div class="col-lg-3 col-md-12">
+                        <div id="rs-sortable" class="sortable stick-when-scroll">
+                            <%- include("./templates/box-post-publish-edit") %>
+                            <%- include("./templates/box-post-category-edit") %>                            
+                            <!-- Box Template -->
+                            <div class="accordion accordion-ui ui-state-default mb-3" id="accordionPageTemplate">
+                                <div class="card">
+                                    <div class="card-header" id="headingPageTemplate">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsePageTemplate" aria-expanded="true" aria-controls="collapsePageTemplate">
+                                                Template
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapsePageTemplate" class="collapse show" aria-labelledby="headingPageTemplate" data-parent="#accordionPageTemplate">
+                                        <div class="card-body mm-wrapper">
+                                            <select class="form-control" name="template" id="template">
+                                                <option value="">Default</option>
+                                                <option value="single-page-dmca" <%if(post.template=="single-page-dmca"){%>selected<%}%>>DMCA</option>
+                                                <option value="single-page-contact" <%if(post.template=="single-page-contact"){%>selected<%}%>>Contact</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <%- include("./templates/box-post-thumbnail-edit") %>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include("./templates/box-post-modal-edit") %>
+    <script>var curPostType = "<%=posttype%>";</script>
+    <script src="/<%=dashboard%>/assets/libs/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="/<%=dashboard%>/assets/libs/tinymce/tinymce.min.js"></script>
+    <script src="/<%=dashboard%>/assets/js/tiny.js"></script>
+    <script src="/<%=dashboard%>/assets/js/userui.js"></script>    
+    <%- include("./include/footer") %>

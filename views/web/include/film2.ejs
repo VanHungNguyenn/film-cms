@@ -1,0 +1,24 @@
+<%
+    var phim = (phim) ? phim : {};
+    var tenPhim = phim.title || phim.filmname || "";
+    var tenPhim2 = phim.filmname || "";
+    var duration = phim.filmtime || "";
+    var permalink = `/phim/${phim.slug}-${phim.id}/`;
+    var thumbPhim = (phim.thumb) ? phim.thumb : {};
+    var thumbnail = thumbPhim.url || phim.thumb_old || "/assets/imgs/no-image.gif";
+    var numVisited = phim.viewcount || 0;
+%>
+<li>
+    <a href="<%=permalink%>" class="film2" title="<%=tenPhim%>">
+        <div class="thumb img-lazy" data-img="<%=thumbnail%>"></div>
+        <div class="info">
+            <div class="title"><%=tenPhim%></div>
+            <div class="name"><%=tenPhim2%></div>
+            <div class="visited">Lượt xem: <span><%=numVisited%></span></div>
+            <div class="rating">
+                <div class="score" style="width: 100%;"></div>
+                <div class="over"></div>
+            </div>
+        </div>
+    </a>
+</li>

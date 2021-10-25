@@ -1,0 +1,94 @@
+1. Categories
+    Tạo 4 cột:
+        id_cate_old ID cũ của Category
+        id_country_old ID cũ của Country
+        keyword_old keyword của Category + Country cũ
+        type_cate_old type của Category cũ
+    Load Country
+        INSERT INTO zphimmoidb.cms_categories(
+            slug, fullslug, title, description, seotitle, seodescription, catetype, catestatus, hirarchylevel, id_cate_old, id_country_old, keyword_old, type_cate_old, author, createdAt, updatedAt
+        ) SELECT slug, slug, name, '', name, '', 'category-qg', 'published', 1, null, id, keywords, '', 1, now(), now()
+        FROM zpmdb.tb_countries;
+    Load Categories
+        INSERT INTO zphimmoidb.cms_categories(
+            slug, fullslug, title, description, seotitle, seodescription, catetype, catestatus, hirarchylevel, id_cate_old, id_country_old, keyword_old, type_cate_old, author, createdAt, updatedAt
+        ) SELECT slug, slug, name, '', name, '', 'category-tl', 'published', 1, null, id, keywords, type, 1, now(), now()
+        FROM zpmdb.tb_categories;
+    Check trùng slug (Data không trùng)
+        SELECT slug FROM zphimmoidb.cms_categories group by slug having count(*) > 1;
+2. Phim
+    Tạo 5 cột
+        actor_old Diễn viên của PHIM cũ 
+        director_old Đạo diễn của PHIM cũ
+        keyword_old keyword của PHIM cũ 
+        thumb_old URL ảnh thumbnail cũ
+        banner_old URL ảnh banner cũ
+    Update trùng slug
+        set sql_safe_updates=0;
+        UPDATE zpmdb.tb_films T1 JOIN 
+        (SELECT slug FROM zpmdb.tb_films GROUP BY slug HAVING count(ID) > 1) dup ON T1.slug = dup.slug 
+        SET T1.slug = concat(T1.slug, "-", T1.id);
+    Load Phim vào cms_posts
+        INSERT INTO zphimmoidb.cms_posts (
+            id, slug, title, description, content, seotitle, seodescription, posttype, poststatus, publishedat, author, createdAt, updatedAt, 
+            viewcount, viewcountday, viewcountweek, viewcountmonth, filmyear, filmtype, filmtime, imdb, filmname, slider, recommended, copyright, channelplay, 
+            actor_old, keyword_old, director_old, thumb_old, banner_old, modifiedat
+        )
+        SELECT id, slug, name, '', content, name, '', 'post-film', CASE WHEN active=true THEN 'published' ELSE 'pending' END, created_at, 1, created_at, updated_at, viewed, viewed_day, viewed_week, viewed_month, 
+        year, type, duration, imdb, name_en, slider, recommended, copyright, 
+        CASE WHEN cinema=true THEN 'cinema' WHEN netflix=true THEN 'netflix' ELSE '' END, actor, keywords, director, thumb, banner, updated_at
+        FROM zpmdb.tb_films;
+    Load Quốc gia cho Phim
+        INSERT INTO cms_post_cates(cateid, postid, createdAt, updatedAt)
+        SELECT cate.id, film.film_id, film.created_at, film.updated_at
+        FROM zpmdb.filmcountry film, cms_categories cate
+        where cate.id_country_old = film.country_id
+        and cate.catetype='category-qg';
+    Load Thể loại cho Phim
+        INSERT INTO cms_post_cates(cateid, postid, createdAt, updatedAt)
+        SELECT cate.id, film.film_id, film.created_at, film.updated_at
+        FROM zpmdb.filmcategory film, cms_categories cate
+        where cate.id_country_old = film.category_id
+        and cate.catetype='category-tl';
+    Load Tập Phim
+        INSERT INTO zphimmoidb.cms_episodes(name, url, description, postid, serverid, created_at, updated_at)
+        SELECT name, url, note, film_id, server_id, created_at, updated_at
+        FROM zpmdb.tb_episodes;
+    Chuyển Keywords Post Thành Tags
+        Tạo hàm xóa HTML cho MYSQL
+            DROP FUNCTION IF EXISTS `strip_tags`;
+            DELIMITER |
+            # function to nuke all opening and closing tags of type specified in argument 2
+            CREATE FUNCTION `strip_tags`($str text) RETURNS text
+            BEGIN
+                DECLARE $start, $end INT DEFAULT 1;
+                LOOP
+                    SET $start = LOCATE("<", $str, $start);
+                    IF (!$start) THEN RETURN $str; END IF;
+                    SET $end = LOCATE(">", $str, $start);
+                    IF (!$end) THEN SET $end = $start; END IF;
+                    SET $str = INSERT($str, $start, $end - $start + 1, "");
+                END LOOP;
+            END;
+            | DELIMITER ;
+        Tạo bảng tách value keywords thành dòng dữ liệu (abc, def) -> [abc, def]
+            create table z_posts_keywords as
+            select posts.id postid, TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(posts.keyword_old, ',', numbers.n), ',', -1)) name, '' slug
+            from numbers inner join zphimmoidb.cms_posts posts on CHAR_LENGTH(posts.keyword_old) -CHAR_LENGTH(REPLACE(posts.keyword_old, ',', ''))>=numbers.n-1
+            order by id, n;
+        Tạo Slug
+            update zphimmoidb.z_posts_keywords set slug=lower(name);
+            update zphimmoidb.z_posts_keywords set
+            slug = REGEXP_REPLACE(slug, '(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)', 'a'),
+            slug = REGEXP_REPLACE(slug, '(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)', 'e'),
+            slug = REGEXP_REPLACE(slug, '(ì|í|ị|ỉ|ĩ)', 'i'),
+            slug = REGEXP_REPLACE(slug, '(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)', 'o'),
+            slug = REGEXP_REPLACE(slug, '(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)', 'u'),
+            slug = REGEXP_REPLACE(slug, '(ỳ|ý|ỵ|ỷ|ỹ)', 'y'),
+            slug = REGEXP_REPLACE(slug, '(đ)', 'd'),
+            slug = REPLACE(slug, ' ', '-'),
+            slug = REGEXP_REPLACE(slug, '^-+', ''),
+            slug = REGEXP_REPLACE(slug, '-+$', '');
+        Xóa Dòng rỗng
+            DELETE FROM zphimmoidb.z_posts_keywords where slug='';
+        
